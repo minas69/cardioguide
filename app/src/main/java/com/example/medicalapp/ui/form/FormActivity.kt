@@ -31,12 +31,7 @@ class FormActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        window.decorView.systemUiVisibility = (
-                View.SYSTEM_UI_FLAG_IMMERSIVE
-                        or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+        setContentBehindNavigationBar()
 
         setContentView(R.layout.activity_form)
         setSupportActionBar(toolbar)
@@ -69,7 +64,10 @@ class FormActivity : AppCompatActivity() {
                 low_risk_country.isChecked
             )
 
-            startActivityForResult(ReportActivity.getIntent(this, data), ReportActivity.REPORT_REQUEST)
+            startActivityForResult(
+                ReportActivity.getIntent(this, data),
+                ReportActivity.REPORT_REQUEST
+            )
         }
 
         val textChangedListener = object : TextWatcher {

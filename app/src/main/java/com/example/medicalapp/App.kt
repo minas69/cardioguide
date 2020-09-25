@@ -1,11 +1,12 @@
 package com.example.medicalapp
 
-import android.app.Application
+import androidx.multidex.MultiDexApplication
+import android.content.Context
 import com.google.firebase.functions.FirebaseFunctions
 import com.google.firebase.functions.ktx.functions
 import com.google.firebase.ktx.Firebase
 
-class App : Application() {
+class App : MultiDexApplication() {
 
     private val functions: FirebaseFunctions by lazy { Firebase.functions }
 
