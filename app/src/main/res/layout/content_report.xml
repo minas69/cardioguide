@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/riskLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/risk_label_text"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/wideRiskLabel"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/risk"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/AppTheme.Report.TextAppearance"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintStart_toStartOf="@+id/riskLabel"
+            app:layout_constraintEnd_toStartOf="@id/wideRisk"
+            app:layout_constraintTop_toBottomOf="@+id/riskLabel"
+            tools:text="Высокий" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/wideRiskLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/wide_risk_label_text"
+            app:layout_constraintStart_toEndOf="@id/riskLabel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/riskLabel"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/wideRisk"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/AppTheme.Report.TextAppearance"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="@+id/wideRiskLabel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/wideRiskLabel"
+            tools:text="6%" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/optimalRiskLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="4dp"
+            android:text="@string/optimal_risk_label_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/statinLabel"
+            app:layout_constraintTop_toBottomOf="@+id/risk" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/optimalRisk"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/AppTheme.Report.TextAppearance"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintStart_toStartOf="@id/optimalRiskLabel"
+            app:layout_constraintEnd_toStartOf="@id/statin"
+            app:layout_constraintTop_toBottomOf="@+id/optimalRiskLabel"
+            tools:text="3%"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/statinLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/statin_label_text"
+            app:layout_constraintStart_toEndOf="@id/optimalRiskLabel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/optimalRiskLabel"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/statin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/AppTheme.Report.TextAppearance"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="@id/statinLabel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/statinLabel"
+            tools:text="Возможен" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/recommendationLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/recommendation_label_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/statin" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/recommendation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/AppTheme.Report.TextAppearance"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="@id/recommendationLabel"
+            app:layout_constraintTop_toBottomOf="@+id/recommendationLabel"
+            tools:text="Экосил необходимо растворить согласно приведенным ниже пропорциям в зависимости от культуры, на которых он будет применяться. Эмульсия Экосила взбалтывается, потом разводится в небольшом количестве теплой воды (40-50 градусов), после чего доводится до необходимого объема водой комнатной температуры, перемешивать необходимо очень тщательно. Необходимое количество препарата можно отмерить при помощи шприца или отсчитав капли." />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
+

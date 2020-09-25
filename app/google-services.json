@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "869930621244",
+    "firebase_url": "https://fir-playground-f1fe0.firebaseio.com",
+    "project_id": "fir-playground-f1fe0",
+    "storage_bucket": "fir-playground-f1fe0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:869930621244:android:feaa3bf48976158fdd6639",
+        "android_client_info": {
+          "package_name": "com.example.medicalapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "869930621244-jk74dlgfpi8t18jpvrkcb436r9h46ccd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC710Q368bvvHlwP9ufIZZjIKhWxywTGbA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "869930621244-jk74dlgfpi8t18jpvrkcb436r9h46ccd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

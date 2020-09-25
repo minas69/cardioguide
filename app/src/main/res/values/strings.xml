@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">MedicalApp</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_email">There is no such a user</string>
+    <string name="invalid_password">The password is invalid</string>
+    <string name="too_many_requests">Too many unsuccessful login attempts. Please try again later.</string>
+    <string name="login_failed">Login failed</string>
+    <string name="title_activity_form">Школа SCORE</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="exit_menu_item">Exit</string>
+    <string name="risk_label_text">Риск</string>
+    <string name="wide_risk_label_text">Риск за 10 лет</string>
+    <string name="optimal_risk_label_text">Оптимальный риск</string>
+    <string name="statin_label_text">Статин</string>
+    <string name="recommendation_label_text">Рекомендации</string>
+    <string name="surname_hint">Фамилия</string>
+    <string name="age_hint">Возраст</string>
+    <string name="weight_hint">Вес</string>
+    <string name="gender_hint">Выберете пол</string>
+    <string name="pressure_hint">AДс, мм рт.ст.</string>
+    <string name="cholesterol_hint">Общий холестерин, ммоль/л</string>
+    <string name="ldl_hint">ХС ЛНП, ммоль/л</string>
+    <string name="smoking_hint">Курение</string>
+    <string name="low_risk_country_hint">Страна низкого риска</string>
+    <string name="send_button_text">Отправить</string>
+</resources>

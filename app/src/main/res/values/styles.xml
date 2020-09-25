@@ -1,0 +1,41 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="fontFamily">@font/gilroy</item>
+    </style>
+
+    <style name="AppTheme.FullScreen" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.Launcher">
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="AppTheme.Button" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:textAppearance">@style/AppTheme.Button.TextAppearance</item>
+    </style>
+
+    <style name="AppTheme.Button.TextAppearance" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textStyle">normal</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="AppTheme.Report.TextAppearance" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+</resources>
