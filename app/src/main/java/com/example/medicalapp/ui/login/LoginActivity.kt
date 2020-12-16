@@ -11,7 +11,9 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.example.medicalapp.R
+import com.example.medicalapp.afterTextChanged
 import com.example.medicalapp.data.Status
+import com.example.medicalapp.getInputText
 import com.example.medicalapp.toast
 import com.example.medicalapp.ui.form.FormActivity
 import kotlinx.android.synthetic.main.activity_login.*
@@ -45,35 +47,26 @@ class LoginActivity : AppCompatActivity() {
             }
         })
 
-        et_email.afterTextChanged {
-            viewModel.loginDataChanged(
-                et_email.text.toString(),
-                et_password.text.toString()
-            )
+        email.editText?.afterTextChanged {
+            viewModel.loginDataChanged(email.getInputText(), password.getInputText())
         }
 
-        et_password.apply {
+        password.editText?.apply {
             afterTextChanged {
-                viewModel.loginDataChanged(
-                    et_email.text.toString(),
-                    et_password.text.toString()
-                )
+                viewModel.loginDataChanged(email.getInputText(), password.getInputText())
             }
 
             setOnEditorActionListener { _, actionId, _ ->
                 when (actionId) {
                     EditorInfo.IME_ACTION_DONE ->
-                        viewModel.login(
-                            et_email.text.toString(),
-                            et_password.text.toString()
-                        )
+                        viewModel.login(email.getInputText(), password.getInputText())
                 }
                 false
             }
         }
 
         login.setOnClickListener {
-            viewModel.login(et_email.text.toString(), et_password.text.toString())
+            viewModel.login(email.getInputText(), password.getInputText())
         }
     }
 
@@ -94,19 +87,4 @@ class LoginActivity : AppCompatActivity() {
             else -> toast(getString(e.msg))
         }
     }
-}
-
-/**
- * Extension function to simplify setting an afterTextChanged action to EditText components.
- */
-fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
-    this.addTextChangedListener(object : TextWatcher {
-        override fun afterTextChanged(editable: Editable?) {
-            afterTextChanged.invoke(editable.toString())
-        }
-
-        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-
-        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-    })
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/avatar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:parentTag="com.example.medicalapp.ui.view.backdrop.NumberView">
+
+    <TextView
+        android:id="@+id/initial"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:padding="6dp"
+        android:textAllCaps="true"
+        app:autoSizeMaxTextSize="22sp"
+        app:autoSizeTextType="uniform" />
+
+</merge>

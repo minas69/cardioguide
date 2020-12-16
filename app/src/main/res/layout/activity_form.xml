@@ -2,37 +2,48 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/coordinator"
+    android:id="@+id/backdrop"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
+    android:background="@color/colorPrimary"
     tools:context=".ui.form.FormActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <!--Front View-->
+    <com.example.medicalapp.ui.view.backdrop.FrontLayout
+        android:id="@+id/frontLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="4dp"
+        android:paddingTop="16dp"
+        app:layout_behavior=".ui.view.backdrop.BackdropBehavior">
+
+        <FrameLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/backdrop_background"
+            app:layout_behavior=".ui.view.backdrop.BackdropBehavior" />
+
+    </com.example.medicalapp.ui.view.backdrop.FrontLayout>
+
+    <!--Back View-->
+    <FrameLayout
+        android:id="@+id/backLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
         android:theme="@style/AppTheme.AppBarOverlay">
+
+        <include layout="@layout/back_layer" />
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:layout_scrollFlags="scroll|enterAlways"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <include layout="@layout/content_form" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/send"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:backgroundTint="@color/colorPrimary"
-        android:tint="@android:color/white"
-        app:tint="@android:color/white"
-        app:srcCompat="@drawable/ic_done" />
+    </FrameLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

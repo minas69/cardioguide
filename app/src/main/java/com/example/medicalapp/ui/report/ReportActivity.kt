@@ -14,7 +14,7 @@ import com.example.medicalapp.data.model.Data
 import com.example.medicalapp.data.model.Report
 import com.example.medicalapp.doOnApplyWindowInsets
 import com.example.medicalapp.padding
-import com.example.medicalapp.setContentBehindNavigationBar
+import com.example.medicalapp.setDecorBehindSystemWindows
 import kotlinx.android.synthetic.main.activity_report.*
 import kotlinx.android.synthetic.main.content_error.*
 import kotlinx.android.synthetic.main.content_report.*
@@ -28,7 +28,7 @@ class ReportActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentBehindNavigationBar()
+        setDecorBehindSystemWindows()
 
         setContentView(R.layout.activity_report)
         setSupportActionBar(toolbar)

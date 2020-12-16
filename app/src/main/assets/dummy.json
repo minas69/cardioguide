@@ -1,0 +1,111 @@
+{
+  "name": "Общие данные",
+  "attributes": [
+    {
+      "name": "Фамилия",
+      "inputType": "text",
+      "required": true
+    },
+    {
+      "name": "Имя",
+      "inputType": "text",
+      "required": true
+    },
+    {
+      "name": "Отчество",
+      "inputType": "text",
+      "required": true
+    },
+    {
+      "name": "Дата рождения",
+      "inputType": "date",
+      "required": true
+    },
+    {
+      "name": "Пол",
+      "inputType": "options",
+      "options": [
+        "Мужской",
+        "Женский"
+      ],
+      "required": true
+    },
+    {
+      "name": "Рост",
+      "inputType": "unsigned",
+      "suffixText": "см",
+      "required": true
+    },
+    {
+      "name": "Вес",
+      "inputType": "unsigned",
+      "suffixText": "кг",
+      "required": true
+    },
+    {
+      "name": "Среднее значение систолического АД за последние две недели",
+      "inputType": "unsigned",
+      "suffixText": "мм.рт.ст.",
+      "required": true
+    },
+    {
+      "name": "Среднее значение диастолического АД за последние две недели",
+      "inputType": "unsigned",
+      "suffixText": "мм.рт.ст.",
+      "required": true
+    },
+    {
+      "name": "Фамилия",
+      "inputType": "text",
+      "required": true
+    },
+    {
+      "name": "Имя",
+      "inputType": "text",
+      "required": true
+    },
+    {
+      "name": "Отчество",
+      "inputType": "text",
+      "required": true
+    },
+    {
+      "name": "Дата рождения",
+      "inputType": "date",
+      "required": true
+    },
+    {
+      "name": "Пол",
+      "inputType": "options",
+      "options": [
+        "Мужской",
+        "Женский"
+      ],
+      "required": true
+    },
+    {
+      "name": "Рост",
+      "inputType": "unsigned",
+      "suffixText": "см",
+      "required": true
+    },
+    {
+      "name": "Вес",
+      "inputType": "unsigned",
+      "suffixText": "кг",
+      "required": true
+    },
+    {
+      "name": "Среднее значение систолического АД за последние две недели",
+      "inputType": "unsigned",
+      "suffixText": "мм.рт.ст.",
+      "required": true
+    },
+    {
+      "name": "Среднее значение диастолического АД за последние две недели",
+      "inputType": "unsigned",
+      "suffixText": "мм.рт.ст.",
+      "required": true
+    }
+  ]
+}

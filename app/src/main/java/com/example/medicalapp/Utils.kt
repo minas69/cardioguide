@@ -1,17 +1,33 @@
 package com.example.medicalapp
 
 import android.content.Context
+import android.content.res.Resources
 import android.os.Build
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.TypedValue
-import android.view.View
-import android.view.ViewGroup
-import android.view.WindowInsets
+import android.view.*
+import android.widget.EditText
 import android.widget.Toast
+import androidx.annotation.LayoutRes
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import com.google.android.material.textfield.TextInputLayout
+
+fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View {
+    return LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
+}
 
 fun Context.toast(text: String) {
     Toast.makeText(this, text, Toast.LENGTH_LONG).show()
+}
+
+fun <T : CoordinatorLayout.Behavior<*>> View.findBehavior(): T = layoutParams.run {
+    if (this !is CoordinatorLayout.LayoutParams) throw IllegalArgumentException("View's layout params should be CoordinatorLayout.LayoutParams")
+
+    (layoutParams as CoordinatorLayout.LayoutParams).behavior as? T
+        ?: throw IllegalArgumentException("Layout's behavior is not current behavior")
 }
 
 fun View.padding(
@@ -31,7 +47,7 @@ fun View.margin(
 ) {
     layoutParams<ViewGroup.MarginLayoutParams> {
         left?.run { leftMargin = this }
-        top?.run { rightMargin = this }
+        top?.run { topMargin = this }
         right?.run { rightMargin = this }
         bottom?.run { bottomMargin = this }
     }
@@ -41,18 +57,54 @@ inline fun <reified T : ViewGroup.LayoutParams> View.layoutParams(block: T.() ->
     if (layoutParams is T) block(layoutParams as T)
 }
 
-fun View.dpToPx(dp: Float): Int = context.dpToPx(dp)
-fun Context.dpToPx(dp: Float): Int =
-    TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.displayMetrics).toInt()
+fun Int.dpToPx(): Int {
+    return this.toFloat().dpToPx()
+}
 
-fun AppCompatActivity.setContentBehindNavigationBar() {
-    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+fun Float.dpToPx(): Int {
+    return TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_DIP,
+        this,
+        Resources.getSystem().displayMetrics
+    ).toInt()
+}
+
+@Suppress("DEPRECATION")
+fun AppCompatActivity.setDecorBehindSystemWindows() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        window.setDecorFitsSystemWindows(false)
+    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
         val flags = window.decorView.systemUiVisibility
         window.decorView.systemUiVisibility = (flags
                 or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION)
     }
 }
+
+fun TextInputLayout.getInputText(): String {
+    val et = editText ?: return ""
+    return et.text.toString()
+}
+
+fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
+    this.addTextChangedListener(object : TextWatcher {
+        override fun afterTextChanged(editable: Editable?) {
+            afterTextChanged.invoke(editable.toString())
+        }
+
+        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+
+        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+    })
+}
+
+@RequiresApi(Build.VERSION_CODES.KITKAT_WATCH)
+fun WindowInsets.copy(
+    left: Int = systemWindowInsetLeft,
+    top: Int = systemWindowInsetTop,
+    right: Int = systemWindowInsetRight,
+    bottom: Int = systemWindowInsetBottom
+) = replaceSystemWindowInsets(left, top, right, bottom)
 
 @RequiresApi(Build.VERSION_CODES.KITKAT_WATCH)
 fun View.doOnApplyWindowInsets(f: (View, WindowInsets, InitialPadding) -> Unit) {
