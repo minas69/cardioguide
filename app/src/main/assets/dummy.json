@@ -1,111 +1,617 @@
-{
-  "name": "Общие данные",
-  "attributes": [
-    {
-      "name": "Фамилия",
-      "inputType": "text",
-      "required": true
-    },
-    {
-      "name": "Имя",
-      "inputType": "text",
-      "required": true
-    },
-    {
-      "name": "Отчество",
-      "inputType": "text",
-      "required": true
-    },
-    {
-      "name": "Дата рождения",
-      "inputType": "date",
-      "required": true
-    },
-    {
-      "name": "Пол",
-      "inputType": "options",
-      "options": [
-        "Мужской",
-        "Женский"
-      ],
-      "required": true
-    },
-    {
-      "name": "Рост",
-      "inputType": "unsigned",
-      "suffixText": "см",
-      "required": true
-    },
-    {
-      "name": "Вес",
-      "inputType": "unsigned",
-      "suffixText": "кг",
-      "required": true
-    },
-    {
-      "name": "Среднее значение систолического АД за последние две недели",
-      "inputType": "unsigned",
-      "suffixText": "мм.рт.ст.",
-      "required": true
-    },
-    {
-      "name": "Среднее значение диастолического АД за последние две недели",
-      "inputType": "unsigned",
-      "suffixText": "мм.рт.ст.",
-      "required": true
-    },
-    {
-      "name": "Фамилия",
-      "inputType": "text",
-      "required": true
-    },
-    {
-      "name": "Имя",
-      "inputType": "text",
-      "required": true
-    },
-    {
-      "name": "Отчество",
-      "inputType": "text",
-      "required": true
-    },
-    {
-      "name": "Дата рождения",
-      "inputType": "date",
-      "required": true
-    },
-    {
-      "name": "Пол",
-      "inputType": "options",
-      "options": [
-        "Мужской",
-        "Женский"
-      ],
-      "required": true
-    },
-    {
-      "name": "Рост",
-      "inputType": "unsigned",
-      "suffixText": "см",
-      "required": true
-    },
-    {
-      "name": "Вес",
-      "inputType": "unsigned",
-      "suffixText": "кг",
-      "required": true
-    },
-    {
-      "name": "Среднее значение систолического АД за последние две недели",
-      "inputType": "unsigned",
-      "suffixText": "мм.рт.ст.",
-      "required": true
-    },
-    {
-      "name": "Среднее значение диастолического АД за последние две недели",
-      "inputType": "unsigned",
-      "suffixText": "мм.рт.ст.",
-      "required": true
-    }
-  ]
-}
+[
+  {
+    "id": 0,
+    "name": "Общие данные",
+    "attributes": [
+      {
+        "id": 0,
+        "name": "Фамилия",
+        "inputType": "text",
+        "required": true
+      },
+      {
+        "id": 1,
+        "name": "Имя",
+        "inputType": "text",
+        "required": true
+      },
+      {
+        "id": 2,
+        "name": "Отчество",
+        "inputType": "text",
+        "required": true
+      },
+      {
+        "id": 3,
+        "name": "Дата рождения",
+        "inputType": "date",
+        "required": true
+      },
+      {
+        "id": 4,
+        "name": "Пол",
+        "inputType": "options",
+        "options": [
+          "Мужской",
+          "Женский"
+        ],
+        "required": true
+      },
+      {
+        "id": 5,
+        "name": "Рост",
+        "inputType": "unsigned",
+        "suffixText": "см",
+        "required": true
+      },
+      {
+        "id": 6,
+        "name": "Вес",
+        "inputType": "unsigned",
+        "suffixText": "кг",
+        "required": true
+      },
+      {
+        "id": 7,
+        "name": "Среднее значение систолического АД за последние две недели",
+        "inputType": "unsigned",
+        "suffixText": "мм.рт.ст.",
+        "required": true
+      },
+      {
+        "id": 8,
+        "name": "Среднее значение диастолического АД за последние две недели",
+        "inputType": "unsigned",
+        "suffixText": "мм.рт.ст.",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "name": "Жалобы за послений месяц",
+    "attributes": [
+      {
+        "id": 9,
+        "name": "Нет жалоб",
+        "inputType": "checkbox"
+      },
+      {
+        "id": 10,
+        "name": "Боль в сердце",
+        "inputType": "checkbox"
+      },
+      {
+        "id": 11,
+        "name": "Перебои в работе сердца",
+        "inputType": "checkbox"
+      },
+      {
+        "id": 12,
+        "name": "Одышка",
+        "inputType": "checkbox"
+      },
+      {
+        "id": 13,
+        "name": "Кашель",
+        "inputType": "checkbox"
+      },
+      {
+        "id": 14,
+        "name": "Отделение мокроты",
+        "inputType": "checkbox"
+      },
+      {
+        "id": 15,
+        "name": "Головокружение",
+        "inputType": "checkbox"
+      },
+      {
+        "id": 16,
+        "name": "Головная боль",
+        "inputType": "checkbox"
+      },
+      {
+        "id": 17,
+        "name": "Шум в ушах",
+        "inputType": "checkbox"
+      },
+      {
+        "id": 18,
+        "name": "Онемение ног, рук",
+        "inputType": "checkbox"
+      },
+      {
+        "id": 19,
+        "name": "Бессонница",
+        "inputType": "checkbox"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Опросник по здоровью EQ-5D-3L",
+    "attributes": [
+      {
+        "id": 20,
+        "name": "Подвижность",
+        "inputType": "radioGroup",
+        "options": [
+          "Я не испытываю трудностей при ходьбе",
+          "Я испытываю некоторые трудности при ходьбе",
+          "Я прикован к постели"
+        ],
+        "required": true
+      },
+      {
+        "id": 21,
+        "name": "Уход за собой",
+        "inputType": "radioGroup",
+        "options": [
+          "Я не испытываю трудностей при уходе за собой",
+          "Я испытываю некоторые трудности с мытьем или одеванием",
+          "Я не в состоянии самостоятельно мыться или одеваться"
+        ],
+        "required": true
+      },
+      {
+        "id": 22,
+        "name": "Повседневная деятельность",
+        "inputType": "radioGroup",
+        "options": [
+          "Я не испытываю трудностей в моей привычной повседневной деятельности",
+          "Я испытываю некоторые трудности в моей привычной повседневной деятельности",
+          "Я не в состоянии заниматься своей привычной повседневной деятельностью"
+        ],
+        "required": true
+      },
+      {
+        "id": 23,
+        "name": "Боль/Дискомфорт",
+        "inputType": "radioGroup",
+        "options": [
+          "Я не испытываю боли или дискомфорта",
+          "Я испытываю умеренную боль или дискомфорт",
+          "Я испытываю крайне сильную боль или дискомфорт"
+        ],
+        "required": true
+      },
+      {
+        "id": 24,
+        "name": "Древога/Депрессия",
+        "inputType": "radioGroup",
+        "options": [
+          "Я не испытываю тревоги или депрессии",
+          "Я испытываю умеренную тревогу или депрессию",
+          "Я испытываю крайне сильную тревогу или депрессию"
+        ],
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Анамнез",
+    "attributes": [
+      {
+        "id": 25,
+        "name": "Семейное положение",
+        "inputType": "options",
+        "options": [
+          "В браке",
+          "Не в браке"
+        ]
+      },
+      {
+        "id": 26,
+        "name": "Наличие детей",
+        "inputType": "unsigned"
+      },
+      {
+        "id": 27,
+        "name": "Просмотр телевизора или компьютера",
+        "inputType": "unsigned",
+        "suffixText": "часов в день"
+      },
+      {
+        "id": 28,
+        "name": "Ходьба на улице",
+        "inputType": "unsigned",
+        "suffixText": "часов в день"
+      },
+      {
+        "id": 29,
+        "name": "Черта личности",
+        "inputType": "options",
+        "options": [
+          "Интроверт",
+          "Экстраверт"
+        ]
+      },
+      {
+        "id": 30,
+        "name": "Количество выкуренных сигарет в день",
+        "inputType": "unsigned"
+      },
+      {
+        "id": 31,
+        "name": "Работающий",
+        "inputType": "checkbox"
+      },
+      {
+        "id": 32,
+        "name": "Наличие домашних животных",
+        "inputType": "checkbox"
+      },
+      {
+        "id": 33,
+        "name": "Стрессоустойчивость",
+        "inputType": "checkbox"
+      },
+      {
+        "id": 34,
+        "name": "Метеозависимость",
+        "inputType": "checkbox"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Наличие болезней",
+    "attributes": [
+      {
+        "id": 34,
+        "name": "Артериальная гипертензия",
+        "inputType": "checkbox",
+        "thenAttributes": [
+          {
+            "id": 34,
+            "name": "Стаж заболевания",
+            "inputType": "unsigned",
+            "suffixText": "лет"
+          }
+        ]
+      },
+      {
+        "id": 34,
+        "name": "Фибрилляция предсердий (мерцательная аритмия)",
+        "inputType": "checkbox"
+      },
+      {
+        "id": 34,
+        "name": "Другие нарушения ритма сердца (кроме фибрилляции предсердий)",
+        "inputType": "checkbox",
+        "thenAttributes": [
+          {
+            "id": 34,
+            "name": "Стаж заболевания",
+            "inputType": "unsigned",
+            "suffixText": "лет"
+          }
+        ]
+      },
+      {
+        "id": 34,
+        "name": "ИБС. Стенокардия",
+        "inputType": "checkbox",
+        "thenAttributes": [
+          {
+            "id": 34,
+            "name": "Стаж заболевания",
+            "inputType": "unsigned",
+            "suffixText": "лет"
+          }
+        ]
+      },
+      {
+        "id": 34,
+        "name": "ПИКС (перенесенный инфаркт миокарда)",
+        "inputType": "checkbox",
+        "thenAttributes": [
+          {
+            "id": 34,
+            "name": "Стаж заболевания",
+            "inputType": "unsigned",
+            "suffixText": "лет"
+          }
+        ]
+      },
+      {
+        "id": 34,
+        "name": "Сахарный диабет",
+        "inputType": "checkbox",
+        "thenAttributes": [
+          {
+            "id": 34,
+            "name": "Стаж заболевания",
+            "inputType": "unsigned",
+            "suffixText": "лет"
+          }
+        ]
+      },
+      {
+        "id": 34,
+        "name": "ОНМК (мозговой инсульт)",
+        "inputType": "checkbox"
+      },
+      {
+        "id": 34,
+        "name": "Болезни щитовидной железы",
+        "inputType": "checkbox"
+      },
+      {
+        "id": 34,
+        "name": "Болезни почек",
+        "inputType": "checkbox"
+      },
+      {
+        "id": 34,
+        "name": "Болезни легких (бронхиальная астма, ХОБЛ)",
+        "inputType": "checkbox"
+      },
+      {
+        "id": 34,
+        "name": "Болезни печени (гепатит, цирроз)",
+        "inputType": "checkbox"
+      },
+      {
+        "id": 34,
+        "name": "COVID-19",
+        "inputType": "checkbox",
+        "thenAttributes": [
+          {
+            "id": 34,
+            "name": "Дата заболевания",
+            "inputType": "date"
+          },
+          {
+            "id": 34,
+            "name": "Процент поражения легочной ткани ",
+            "inputType": "unsigned"
+          },
+          {
+            "id": 34,
+            "name": "Проводилось ли лечение в стационаре",
+            "inputType": "checkbox"
+          },
+          {
+            "id": 34,
+            "name": "Жалобы на момент заболевания",
+            "inputType": "checkboxGroup",
+            "options": [
+              "кашель",
+              "температура выше 37",
+              "температура выше 38",
+              "одышка",
+              "потеря обоняния",
+              "потеря вкуса"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 34,
+        "name": "Онкологические заболевания",
+        "inputType": "checkbox",
+        "thenAttributes": [
+          {
+            "id": 34,
+            "name": "Стаж заболевания",
+            "inputType": "unsigned",
+            "suffixText": "лет"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Принимаемые препараты",
+    "attributes": [
+      {
+        "id": 34,
+        "name": "Ингибиторы АПФ / сартаны",
+        "inputType": "radioGroup",
+        "options": [
+          "зофеноприл",
+          "каптоприл",
+          "лизиноприл",
+          "периндоприл",
+          "рамиприл",
+          "фозиноприл",
+          "эналаприл",
+          "азилсартан",
+          "валсартан",
+          "ирбесартан",
+          "кандесертан",
+          "лозартан",
+          "олмесартан",
+          "телмисартан",
+          "эпросартан"
+        ],
+        "thenAttributes": [
+          {
+            "id": 34,
+            "name": "Суточная дозировка препарата",
+            "inputType": "unsigned",
+            "suffixText": "мг"
+          }
+        ]
+      },
+      {
+        "id": 34,
+        "name": "Антагонисты кальция",
+        "inputType": "radioGroup",
+        "options": [
+          "амлодипин",
+          "верапамил",
+          "дилтиазем",
+          "лерканидипин",
+          "нимодипин",
+          "нитрендипин",
+          "нифедипин",
+          "фелодипин",
+          "циннаризин"
+        ],
+        "thenAttributes": [
+          {
+            "id": 34,
+            "name": "Суточная дозировка препарата",
+            "inputType": "unsigned",
+            "suffixText": "мг"
+          }
+        ]
+      },
+      {
+        "id": 34,
+        "name": "Диуретики",
+        "inputType": "radioGroup",
+        "options": [
+          "гипотиазид",
+          "индапамид",
+          "спиронолактон или верошпирон",
+          "торасемид с любым названием",
+          "фуросемид или лазикс",
+          "эплеренон или эспиро"
+        ],
+        "thenAttributes": [
+          {
+            "id": 34,
+            "name": "Суточная дозировка препарата",
+            "inputType": "unsigned",
+            "suffixText": "мг"
+          }
+        ]
+      },
+      {
+        "id": 34,
+        "name": "Бета-блокаторы",
+        "inputType": "radioGroup",
+        "options": [
+          "атенолол",
+          "бисопролол",
+          "метопролол",
+          "небиволол",
+          "пропранолол или анаприлин"
+        ],
+        "thenAttributes": [
+          {
+            "id": 34,
+            "name": "Суточная дозировка препарата",
+            "inputType": "unsigned",
+            "suffixText": "мг"
+          }
+        ]
+      },
+      {
+        "id": 34,
+        "name": "Нитраты (нитроглицерин, кардикет, эринит, нитросорбид и др.) - укажите количество приема нитратов, за месяц",
+        "inputType": "unsigned"
+      },
+      {
+        "id": 34,
+        "name": "Антикоагулянты",
+        "inputType": "radioGroup",
+        "options": [
+          "варфарин",
+          "ксарелто",
+          "прадакса",
+          "эликвис"
+        ],
+        "thenAttributes": [
+          {
+            "id": 34,
+            "name": "Суточная дозировка препарата",
+            "inputType": "unsigned",
+            "suffixText": "мг"
+          },
+          {
+            "id": 34,
+            "name": "Последний уровень МНО, если пациент принимает варфарин",
+            "inputType": "unsigned",
+            "suffixText": "мг"
+          }
+        ]
+      },
+      {
+        "id": 34,
+        "name": "Статины",
+        "inputType": "radioGroup",
+        "options": [
+          "аторвастатин",
+          "розувастатин",
+          "симвастатин"
+        ],
+        "thenAttributes": [
+          {
+            "id": 34,
+            "name": "Суточная дозировка препарата",
+            "inputType": "unsigned",
+            "suffixText": "мг"
+          }
+        ]
+      },
+      {
+        "id": 34,
+        "name": "Антиаритмические препараты",
+        "inputType": "radioGroup",
+        "options": [
+          "аллапинин",
+          "амиодарон или кордарон",
+          "новокаинамид",
+          "пропафенон или пропанорм",
+          "соталол или сотагексал",
+          "этацизин"
+        ],
+        "thenAttributes": [
+          {
+            "id": 34,
+            "name": "Суточная дозировка препарата",
+            "inputType": "unsigned",
+            "suffixText": "мг"
+          }
+        ]
+      },
+      {
+        "id": 34,
+        "name": "Дигоксин",
+        "inputType": "checkbox"
+      },
+      {
+        "id": 34,
+        "name": "Антиагреганты",
+        "inputType": "checkboxGroup",
+        "options": [
+          "ацетилсалициловая кислота с любым названием",
+          "клопидогрел с любым названием",
+          "брилинта",
+          "эффиент"
+        ]
+      },
+      {
+        "id": 34,
+        "name": "Прочие средства",
+        "inputType": "checkboxGroup",
+        "options": [
+          "моксонидин",
+          "предуктал",
+          "антациды",
+          "ингибиторы протонной помпы",
+          "спазмолитики",
+          "бронходилататоры",
+          "тирозол",
+          "левотироксин или эутирокс",
+          "сахароснижающие препараты",
+          "инсулин",
+          "успокоительные",
+          "феназепам",
+          "антидепрессанты",
+          "корвалол или валокордин",
+          "валериана",
+          "валидол",
+          "глицин"
+        ]
+      }
+    ]
+  }
+]

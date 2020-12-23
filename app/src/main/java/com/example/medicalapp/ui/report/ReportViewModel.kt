@@ -23,8 +23,8 @@ class ReportViewModel(val data: Data, private val repository: MainRepository) : 
         viewModelScope.launch {
             _result.value = ReportResult.loading()
             try {
-                val result = repository.sendData(data)
-                _result.value = ReportResult.success(result)
+//                val result = repository.sendData(data)
+//                _result.value = ReportResult.success(result)
             } catch (e: Exception) {
                 Log.e("ReportViewModel", "Error", e)
                 _result.value = ReportResult.error(e.message!!)

@@ -14,6 +14,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.children
 import com.example.medicalapp.R
+import com.example.medicalapp.margin
 
 
 class BackdropBehavior : CoordinatorLayout.Behavior<View> {
@@ -47,6 +48,7 @@ class BackdropBehavior : CoordinatorLayout.Behavior<View> {
 
     private var topPosition: Int = 0
     private var bottomPosition: Int = 0
+    private var topInset: Int = 0
     private var bottomInset: Int = 0
 
     private var iconRes: Int = R.drawable.ic_close
@@ -165,6 +167,11 @@ class BackdropBehavior : CoordinatorLayout.Behavior<View> {
         this.iconRes = iconRes
     }
 
+    fun setTopInset(topInset: Int) {
+        this.topInset = topInset
+        needToInitializing = true
+    }
+
     fun setBottomInset(bottomInset: Int) {
         this.bottomInset = bottomInset
         needToInitializing = true
@@ -235,7 +242,9 @@ class BackdropBehavior : CoordinatorLayout.Behavior<View> {
         backLayout: ViewGroup
     ) {
 
-        topPosition = backLayout.top + toolbar.height
+        toolbar.margin(top = topInset)
+
+        topPosition = backLayout.top + toolbar.height + topInset
         bottomPosition = backLayout.top + backLayout.height
         if (bottomPosition > parent.height - bottomInset) {
             bottomPosition = parent.height - bottomInset
@@ -293,7 +302,7 @@ class BackdropBehavior : CoordinatorLayout.Behavior<View> {
         frontLayout
             .animate()
             .setInterpolator(AccelerateDecelerateInterpolator())
-//            .withDim()
+            .withDim()
             .y(position)
             .setDuration(duration)
             .start()
@@ -322,7 +331,7 @@ class BackdropBehavior : CoordinatorLayout.Behavior<View> {
         frontLayout
             .animate()
             .setInterpolator(AccelerateDecelerateInterpolator())
-//            .withDim()
+            .withDim()
             .y(position)
             .setDuration(duration)
             .start()

@@ -4,19 +4,15 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-@SerialName("Block")
-class BlockSurrogate(val name: String, val attributes: List<AttributeSurrogate>) {
-
-}
+class BlockSurrogate(val id: Int, val name: String, val attributes: List<Input>)
 
 @Serializable
-@SerialName("Attribute")
-class AttributeSurrogate(
+class InputSurrogate(
+    val id: Int,
     val name: String,
     val inputType: String,
     val required: Boolean = false,
     val options: List<String>? = null,
-    val suffixText: String? = ""
-) {
-
-}
+    val suffixText: String? = "",
+    val thenAttributes: List<Input>? = null
+)

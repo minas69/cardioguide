@@ -12,7 +12,7 @@
 
     // Strings for Form Screen
     <string name="title_activity_form">Шаг 2 из 4</string>
-    <string name="exit_menu_item">Выход</string>
+    <string name="exit_menu_item">Выйти</string>
     <string name="surname_hint">Фамилия</string>
     <string name="age_hint">Возраст</string>
     <string name="weight_hint">Вес</string>
@@ -32,4 +32,6 @@
     <string name="statin_label_text">Статин</string>
     <string name="recommendation_label_text">Рекомендации</string>
     <string name="text_input_hint">Text Input</string>
+    <string name="complete_menu_item">Завершить</string>
+    <string name="more_menu_item">more</string>
 </resources>

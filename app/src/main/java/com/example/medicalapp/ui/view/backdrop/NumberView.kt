@@ -5,10 +5,10 @@ import android.os.Build
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import com.example.medicalapp.R
 import kotlinx.android.synthetic.main.number_view.view.*
 
-@RequiresApi(Build.VERSION_CODES.M)
 class NumberView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
 ) : FrameLayout(context, attrs) {
@@ -16,12 +16,12 @@ class NumberView @JvmOverloads constructor(
     private var number: Int? = null
     private var mSelected = false
 
-    private var colorAccent = context.getColor(R.color.colorAccent)
-    private var colorGray = context.getColor(R.color.lightGrayColor)
+    private var colorAccent = ContextCompat.getColor(context, R.color.colorAccent)
+    private var colorGray = ContextCompat.getColor(context, R.color.lightGrayColor)
 
     init {
         inflate(context, R.layout.number_view, this)
-        clipToOutline = true
+//        clipToOutline = true
     }
 
     fun setNumber(number: Int?, selected: Boolean) {

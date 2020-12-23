@@ -12,6 +12,6 @@ class App : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()
-//        functions.useEmulator("192.168.1.40", 5000)
+        functions.useEmulator("192.168.1.40", 5000)
     }
 }

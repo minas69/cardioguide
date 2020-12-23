@@ -5,6 +5,7 @@
     <color name="colorAccent">#01579b</color>
     <color name="errorColor">#b00020</color>
     <color name="navigationBarScrim">#b3000000</color>
-    <color name="lightGrayColor">#A3FFFFFF</color>
-    <color name="darkGrayColor">#29000000</color>
+    <color name="lightGrayColor">#99FFFFFF</color>
+    <color name="darkGrayColor">#1F000000</color>
+    <color name="dividerColor">#1F000000</color>
 </resources>

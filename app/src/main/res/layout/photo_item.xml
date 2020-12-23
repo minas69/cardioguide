@@ -17,7 +17,6 @@
 
             <ImageView
                 android:id="@+id/photoUri"
-                app:srcCompat="@drawable/photo_placeholder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 

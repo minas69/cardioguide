@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/exit"
-        android:icon="@drawable/ic_exit"
-        android:title="@string/exit_menu_item"
-        app:showAsAction="ifRoom" />
+        android:id="@+id/more"
+        android:title="@string/more_menu_item"
+        android:icon="@drawable/ic_more"
+        app:showAsAction="always"/>
 
 </menu>

@@ -10,6 +10,7 @@ import android.util.AttributeSet
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
@@ -33,7 +34,7 @@ class FrontLayout @JvmOverloads constructor(
     }
     private val backgroundDim = ContextCompat.getDrawable(context, R.drawable.backdrop_background)
 
-    private var subheader: MaterialTextView
+    var subheader: TextView
 
     init {
         orientation = VERTICAL
@@ -44,10 +45,9 @@ class FrontLayout @JvmOverloads constructor(
             width = MATCH_PARENT
             height = WRAP_CONTENT
             ellipsize = TextUtils.TruncateAt.END
-            textSize = context.resources.getDimension(R.dimen.subheader_text_size)
             maxLines = 1
             isSingleLine = true
-            TextViewCompat.setTextAppearance(this, R.style.TextAppearance_AppCompat_Title)
+            TextViewCompat.setTextAppearance(this, R.style.AppTheme_TextAppearance_Title)
         }
         addView(subheader)
 
@@ -66,10 +66,6 @@ class FrontLayout @JvmOverloads constructor(
             alpha = (backgroundDimAlpha * 255).toInt()
             draw(canvas)
         }
-    }
-
-    fun setSubheaderTitle(title: String) {
-        subheader.text = title
     }
 
     fun getSubheaderHeight() = subheader.bottom

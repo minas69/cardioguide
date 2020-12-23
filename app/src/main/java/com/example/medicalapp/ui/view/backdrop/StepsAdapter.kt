@@ -7,10 +7,10 @@ import android.graphics.Rect
 import android.os.Build
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
+import com.example.medicalapp.Step
 import com.example.medicalapp.R
 import com.example.medicalapp.dpToPx
 import com.example.medicalapp.inflate
@@ -18,11 +18,19 @@ import kotlinx.android.synthetic.main.step_item.view.*
 
 class StepsAdapter(
     val context: Context,
-    val data: List<String>,
+    val data: List<Step>,
+    selectedStep: Int = 0,
     val onItemClickListener: (position: Int) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var selected = 0
+    var selected: Int = selectedStep
+        set(value) {
+            if (field != value) {
+                notifyItemChanged(field)
+                notifyItemChanged(value)
+                field = value
+            }
+        }
 
     private var colorWhite = ContextCompat.getColor(context, android.R.color.white)
     private var colorGray = ContextCompat.getColor(context, R.color.lightGrayColor)
@@ -40,11 +48,9 @@ class StepsAdapter(
                     title.setTextColor(colorGray)
                 }
             }
-            title.text = data[position]
+            title.text = data[position].name
 
             setOnClickListener {
-                notifyItemChanged(selected)
-                notifyItemChanged(position)
                 selected = position
                 onItemClickListener(position)
             }

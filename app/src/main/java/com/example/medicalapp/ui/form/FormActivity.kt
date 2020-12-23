@@ -23,26 +23,14 @@ class FormActivity : AppCompatActivity() {
     companion object {
         private const val FRAGMENT_CONTAINER = R.id.content
         private const val FRAGMENT_TAG_PREFIX = "content_"
-
-        private val stepsList = listOf(
-            "Общие данные",
-            "Жалобы за последний месяц",
-            "Опросник по здоровью EQ-5D-3L",
-            "Анамнез",
-            "Наличие болезней",
-            "Жалобы за последний месяц",
-            "Принимаемые препараты",
-            "Общий анализ крови",
-            "Биохимический анализ крови",
-            "ЭКГ",
-            "УЗИ сердца (ЭХОКГ)",
-            "Холтеровское мониторирование (ХМЭКГ)"
-        )
+        private const val BOTTOM_SHEET_TAG = "bottom_sheet"
+        private const val SELECTED_STEP_ARG = "selected_step"
     }
 
     private val viewModel: FormViewModel by viewModels { FormViewModelFactory(application) }
 
     private lateinit var backdropBehavior: BackdropBehavior
+    private lateinit var stepsAdapter: StepsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,53 +41,73 @@ class FormActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         applyInsets()
 
-        val adapter = StepsAdapter(this, stepsList) { index ->
+        var selected = 0
+        savedInstanceState?.let {
+            selected = it.getInt(SELECTED_STEP_ARG)
+            viewModel.selectStep(selected)
+        }
+
+        stepsAdapter = StepsAdapter(this, viewModel.data, selected) { index ->
             backdropBehavior.close()
             viewModel.selectStep(index)
         }
         with(steps) {
-            this.adapter = adapter
-            addItemDecoration(adapter.JoinItemDecoration())
+            adapter = stepsAdapter
+            addItemDecoration(stepsAdapter.JoinItemDecoration())
         }
-
-        frontLayout.setSubheaderTitle(FormActivity.stepsList[0])
 
         backdropBehavior = frontLayout.findBehavior()
         backdropBehavior.attachBackLayout(R.id.backLayout)
 
         viewModel.selectedStep.observe(this) { index ->
-            val total = stepsList.size
+            stepsAdapter.selected = index
+            val total = viewModel.data.size
             supportActionBar?.title = "Шаг ${index + 1} из $total"
-            frontLayout.setSubheaderTitle(stepsList[index])
+            frontLayout.subheader.text = viewModel.data[index].name
             showPage(index)
+        }
+
+        viewModel.result.observe(this) {
+            toast(it)
         }
 
         rollUp.setOnClickListener {
             backdropBehavior.close()
         }
+
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        outState.putInt(SELECTED_STEP_ARG, viewModel.selectedStep.value ?: 0)
+    }
+
+    @Suppress("DEPRECATION")
     private fun applyInsets() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
             backdrop.setOnApplyWindowInsetsListener { view, insets ->
-                view.padding(top = insets.systemWindowInsetTop)
+//                view.padding(top = insets.systemWindowInsetTop)
+                steps.padding(top = insets.systemWindowInsetTop)
+                rollUp.margin(top = insets.systemWindowInsetTop)
+                backdropBehavior.setTopInset(insets.systemWindowInsetTop)
                 backdropBehavior.setBottomInset(insets.systemWindowInsetBottom)
                 insets.copy(top = 0)
             }
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        when (requestCode) {
-            ReportActivity.REPORT_REQUEST -> {
-                if (resultCode == Activity.RESULT_OK) {
-//                    clearInput()
-                }
-            }
-        }
-    }
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//
+//        when (requestCode) {
+//            ReportActivity.REPORT_REQUEST -> {
+//                if (resultCode == Activity.RESULT_OK) {
+////                    clearInput()
+//                }
+//            }
+//        }
+//    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_form, menu)
@@ -108,11 +116,27 @@ class FormActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.exit -> {
-//                logout()
+            R.id.more -> {
+                showBottomSheet()
             }
         }
         return true
+    }
+
+    private fun showBottomSheet() {
+        val sheet = BottomSheet()
+        sheet.itemClickListener = { view ->
+            when (view.id) {
+                R.id.complete -> {
+                    viewModel.complete()
+                }
+                R.id.exit -> {
+                    toast("Exited")
+//                    logout()
+                }
+            }
+        }
+        sheet.show(supportFragmentManager, BOTTOM_SHEET_TAG)
     }
 
     private fun logout() {
@@ -123,6 +147,7 @@ class FormActivity : AppCompatActivity() {
 
     private fun showPage(index: Int) {
         val transaction = supportFragmentManager.beginTransaction()
+        transaction.setCustomAnimations(R.animator.fade_in, R.animator.fade_out)
 
         val currentFragment = supportFragmentManager.primaryNavigationFragment
         var fragment = supportFragmentManager.findFragmentByTag(FRAGMENT_TAG_PREFIX + index)

@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.textfield.TextInputLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/text_input_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:labelFor="@+id/edit_text"
+    android:paddingVertical="4dp"
+    android:paddingHorizontal="@dimen/activity_horizontal_margin"
     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
 
     <com.google.android.material.textfield.MaterialAutoCompleteTextView
-        android:id="@+id/edit_text"
+        android:id="@+id/auto_complete_text_view"
         android:layout_width="match_parent"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:layout_height="64dp"
         android:inputType="none" />
 
