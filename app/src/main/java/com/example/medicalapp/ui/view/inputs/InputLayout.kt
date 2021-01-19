@@ -4,23 +4,16 @@ import android.content.Context
 import android.os.Build
 import android.os.Parcel
 import android.os.Parcelable
-import android.text.InputType
 import android.util.AttributeSet
 import android.util.SparseArray
 import android.view.View
-import android.view.ViewGroup
 import android.view.WindowInsets
-import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.core.view.children
 import com.example.medicalapp.*
-import com.example.medicalapp.CheckBox
-import com.example.medicalapp.RadioGroup
+//import com.example.medicalapp.CheckBox
+//import com.example.medicalapp.RadioGroup
 import com.example.medicalapp.ui.view.CustomLinearLayout
-import com.google.android.material.textfield.TextInputLayout
-import kotlinx.android.synthetic.main.checkbox.view.*
-import kotlinx.android.synthetic.main.checkbox.view.optionalInputLayout
-import kotlinx.android.synthetic.main.radio_group.view.*
 
 class InputLayout @JvmOverloads constructor(
     context: Context,
@@ -48,9 +41,11 @@ class InputLayout @JvmOverloads constructor(
                 is DateInput -> R.layout.text_field
                 is OptionsInput -> R.layout.dropdown_menu
                 is IntegerInput -> R.layout.text_field
-                is CheckBox -> R.layout.checkbox
-                is RadioGroup -> R.layout.radio_group
-                is CheckboxGroup -> R.layout.checkbox_group
+                is FloatInput -> R.layout.text_field
+                is CheckBoxInput -> R.layout.checkbox
+                is RadioGroupInput -> R.layout.radio_group
+                is CheckboxGroupInput -> R.layout.checkbox_group
+//                is SliderInput -> R.layout.slider
             }
             with(inflate(context, resId, null)) {
                 addView(this)
@@ -61,92 +56,113 @@ class InputLayout @JvmOverloads constructor(
 
     private fun bindView(view: View, input: Input) {
         when (input) {
-            is TextInput -> with(view as TextInputLayout) {
-                hint = input.name
-                editText?.afterTextChanged { input.input = it }
-            }
-            is DateInput -> with(view as TextInputLayout) {
-                hint = input.name
-                editText?.apply {
-                    inputType = InputType.TYPE_CLASS_DATETIME
-                    afterTextChanged { input.input = it }
-                }
-            }
-            is OptionsInput -> with(view as TextInputLayout) {
-                hint = input.name
-                val items = input.options
-                val adapter = ArrayAdapter(context, R.layout.list_gender, items)
-                (editText as? AutoCompleteTextView)?.apply {
-                    setAdapter(adapter)
-                    setOnItemClickListener { _, _, i, _ ->
-                        input.selected = i
-                    }
-                }
-            }
-            is IntegerInput -> with(view as TextInputLayout) {
-                hint = input.name
-                suffixText = input.suffix
-                editText?.apply {
-                    inputType = InputType.TYPE_CLASS_NUMBER
-                    afterTextChanged {
-                        input.input = it.toIntOrNull()
-                    }
-                }
-            }
-            is CheckBox -> with(view as ViewGroup) {
-                checkbox.text = input.name
-                checkbox.setOnCheckedChangeListener { _, isChecked ->
-                    input.isChecked = isChecked
-                    if (isChecked && input.thenAttributes != null) {
-                        optionalInputLayout.visibility = View.VISIBLE
-                    } else {
-                        optionalInputLayout.visibility = View.GONE
-                    }
-                }
-                if (input.thenAttributes != null) {
-                    optionalInputLayout.data = input.thenAttributes
-                }
-            }
-            is RadioGroup -> with(view as ViewGroup) {
-                hint.text = input.name
-                options.apply {
-                    setOnCheckedChangeListener { _, i -> input.checked = i }
-                    for ((j, option) in input.options.withIndex()) {
-                        (inflate(context, R.layout.radio_option, null) as RadioButton).run {
-                            id = j
-                            text = option
-                            addView(this)
-                            layoutParams.width = LayoutParams.MATCH_PARENT
-                        }
-                    }
-                }
-
-                if (input.thenAttributes != null) {
-                    optionalInputLayout.visibility = View.VISIBLE
-                    optionalInputLayout.data = input.thenAttributes
-                }
-            }
-            is CheckboxGroup -> with(view as ViewGroup) {
-                hint.text = input.name
-                options.apply {
-                    for ((j, option) in input.options.withIndex()) {
-                        (inflate(context, R.layout.checkbox, null)).run {
-                            id = j
-                            checkbox.text = option
-                            checkbox.setOnCheckedChangeListener { _, isChecked ->
-                                if (isChecked) {
-                                    input.checked.add(j)
-                                } else {
-                                    input.checked.remove(j)
-                                }
-                            }
-                            addView(this)
-                        }
-                    }
-                }
-            }
+//            is TextInput -> with(view as TextInputLayout) {
+//                hint = input.name
+//                editText?.afterTextChanged { input.input = it }
+//            }
+//            is DateInput -> with(view as TextInputLayout) {
+//                hint = input.name
+//                editText?.apply {
+//                    inputType = InputType.TYPE_CLASS_DATETIME
+//                    afterTextChanged { input.input = it }
+//                }
+//            }
+//            is OptionsInput -> with(view as TextInputLayout) {
+//                hint = input.name
+//                val items = input.options
+//                val adapter = ArrayAdapter(context, R.layout.list_gender, items)
+//                (editText as? AutoCompleteTextView)?.apply {
+//                    setAdapter(adapter)
+//                    setOnItemClickListener { _, _, i, _ ->
+//                        input.selected = i
+//                    }
+//                }
+//            }
+//            is IntegerInput -> with(view as TextInputLayout) {
+//                hint = input.name
+//                suffixText = input.suffix
+//                editText?.apply {
+//                    inputType = InputType.TYPE_CLASS_NUMBER
+//                    afterTextChanged {
+//                        input.input = it.toIntOrNull()
+//                    }
+//                }
+//            }
+////            is FloatInput -> with(view as TextInputLayout) {
+////                hint = input.name
+////                suffixText = input.suffix
+////                editText?.apply {
+////                    inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL
+////                    afterTextChanged {
+////                        input.input = it.toFloatOrNull()
+////                    }
+////                }
+////            }
+//            is CheckBox -> with(view as ViewGroup) {
+//                checkbox.text = input.name
+//                checkbox.setOnCheckedChangeListener { _, isChecked ->
+//                    input.isChecked = isChecked
+//                    if (isChecked && input.thenAttributes != null) {
+//                        optionalInputLayout.visibility = View.VISIBLE
+//                    } else {
+//                        optionalInputLayout.visibility = View.GONE
+//                    }
+//                }
+//                if (input.thenAttributes != null) {
+//                    optionalInputLayout.data = input.thenAttributes
+//                }
+//            }
+//            is RadioGroup -> with(view as ViewGroup) {
+//                hint.text = input.name
+//                optionsLayout.apply {
+//                    setOnCheckedChangeListener { _, i -> input.checked = i }
+//                    for ((j, option) in input.options.withIndex()) {
+//                        (inflate(context, R.layout.radio_option, null) as RadioButton).run {
+//                            id = j
+//                            text = option
+//                            addView(this)
+//                            layoutParams.width = LayoutParams.MATCH_PARENT
+//                        }
+//                    }
+//                }
+//
+//                if (input.thenAttributes != null) {
+//                    optionalInputLayout.visibility = View.VISIBLE
+//                    optionalInputLayout.data = input.thenAttributes
+//                }
+//            }
+//            is CheckboxGroup -> with(view as ViewGroup) {
+//                hint.text = input.name
+//                findViewById<LinearLayout>(R.id.optionsLayout).apply {
+//                    for ((j, option) in input.options.withIndex()) {
+//                        (inflate(context, R.layout.checkbox, null)).run {
+//                            id = j
+//                            checkbox.text = option
+//                            checkbox.setOnCheckedChangeListener { _, isChecked ->
+//                                if (isChecked) {
+//                                    input.checked.add(j)
+//                                } else {
+//                                    input.checked.remove(j)
+//                                }
+//                            }
+//                            addView(this)
+//                        }
+//                    }
+//                }
+//            }
+//            is SliderInput -> with (view as ViewGroup) {
+//                hint.text = input.name
+//                rangeSlider.apply {
+//                    valueFrom = 0.0f
+//                    valueTo = input.range.second.toFloat()
+//                }
+//            }
         }
     }
+
+//    override fun hasDividerBeforeChild(childIndex: Int): Boolean {
+//
+//    }
 
 //    override fun hasDividerBeforeChild(childIndex: Int): Boolean {
 //        val inputs = data ?: return false

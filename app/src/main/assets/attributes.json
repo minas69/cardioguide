@@ -606,7 +606,7 @@
         },
         {
           "name": "АЛТ",
-          "inputType": "flaot"
+          "inputType": "float"
         },
         {
           "name": "Холестерин",
@@ -734,53 +734,33 @@
         },
         {
           "name": "Регургитация на митральном клапане, степень",
-          "inputType": "radioGroup",
-          "options": [
-            "1",
-            "2",
-            "3",
-            "4"
-          ]
+          "inputType": "slider",
+          "from": 1,
+          "to": 4
         },
         {
           "name": "Регургитация на аортальном клапане, степень",
-          "inputType": "radioGroup",
-          "options": [
-            "1",
-            "2",
-            "3",
-            "4"
-          ]
+          "inputType": "slider",
+          "from": 1,
+          "to": 4
         },
         {
           "name": "Регургитация на трикуспидальном клапане, степень",
-          "inputType": "radioGroup",
-          "options": [
-            "1",
-            "2",
-            "3",
-            "4"
-          ]
+          "inputType": "slider",
+          "from": 1,
+          "to": 4
         },
         {
           "name": "Регургитация на клапане легочной артерии, степень",
-          "inputType": "radioGroup",
-          "options": [
-            "1",
-            "2",
-            "3",
-            "4"
-          ]
+          "inputType": "slider",
+          "from": 1,
+          "to": 4
         },
         {
           "name": "Легочная гипертензия, степень",
-          "inputType": "radioGroup",
-          "options": [
-            "1",
-            "2",
-            "3",
-            "4"
-          ]
+          "inputType": "slider",
+          "from": 1,
+          "to": 4
         }
       ]
     },

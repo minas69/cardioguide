@@ -1,50 +1,24 @@
 package com.example.medicalapp.data
 
+import android.util.Log
 import com.example.medicalapp.Input
+import com.example.medicalapp.data.model.ResultResponse
 import com.google.firebase.functions.FirebaseFunctions
 
 class MainDataSource {
 
     private val functions: FirebaseFunctions by lazy { FirebaseFunctions.getInstance() }
 
-//    suspend fun sendData(data: Data): Report {
-//        val dataHashMap = hashMapOf(
-//            "surname" to data.surname,
-//            "age" to data.age,
-//            "weight" to data.weight,
-//            "gender" to data.gender,
-//            "pressure" to data.pressure,
-//            "cholesterol" to data.cholesterol,
-//            "ldl" to data.ldl,
-//            "smoking" to data.smoking,
-//            "lowRiskCountry" to data.lowRiskCountry
-//        )
-//
-//        @Suppress("UNCHECKED_CAST")
-//        val result = functions
-//            .getHttpsCallable("api/report")
-//            .call(dataHashMap)
-//            .await()
-//            .data as Map<String, Any>
-//
-//        val jsonString = JSONObject(result).toString()
-//        return Json.decodeFromString(jsonString)
-//    }
-
-    suspend fun post(data: List<Input>): String {
-        val payload = mutableListOf<HashMap<String, *>>()
-        data.forEach {
-            payload.add(it.toHashMap())
-        }
+    suspend fun post(payload: List<Map<String, *>>): ResultResponse {
 
         @Suppress("UNCHECKED_CAST")
         val result = functions
             .getHttpsCallable("api/post")
             .call(payload)
             .await()
-            .data as String
+            .data as HashMap<String, *>
 
-        return result
+        return ResultResponse(result["hdr"] as Double, result["gfr"] as Double, result["bmi"] as Double)
 
 //        val jsonString = JSONObject(result).toString()
 //        return Json.decodeFromString(jsonString)

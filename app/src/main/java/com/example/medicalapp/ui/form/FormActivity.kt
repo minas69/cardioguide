@@ -1,13 +1,12 @@
 package com.example.medicalapp.ui.form
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProviders
 import com.example.medicalapp.*
 import com.example.medicalapp.ui.login.LoginActivity
 import com.example.medicalapp.ui.report.ReportActivity
@@ -27,7 +26,7 @@ class FormActivity : AppCompatActivity() {
         private const val SELECTED_STEP_ARG = "selected_step"
     }
 
-    private val viewModel: FormViewModel by viewModels { FormViewModelFactory(application) }
+    private lateinit var viewModel: FormViewModel
 
     private lateinit var backdropBehavior: BackdropBehavior
     private lateinit var stepsAdapter: StepsAdapter
@@ -41,12 +40,21 @@ class FormActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         applyInsets()
 
-        var selected = 0
+        val factory = FormViewModelFactory(application, this, savedInstanceState)
+        viewModel = ViewModelProviders.of(this, factory).get(FormViewModel::class.java)
+
+//        var selected = 0
+//        savedInstanceState?.let {
+//            selected = it.getInt(SELECTED_STEP_ARG)
+//            viewModel.selectStep(selected)
+//        }
+
         savedInstanceState?.let {
-            selected = it.getInt(SELECTED_STEP_ARG)
-            viewModel.selectStep(selected)
+            val iinputs = (it.getSerializable("fuck") as HashMap<String, Any>?) ?: return@let
+            viewModel.setInputs(iinputs)
         }
 
+        val selected = viewModel.selectedStep.value ?: 0
         stepsAdapter = StepsAdapter(this, viewModel.data, selected) { index ->
             backdropBehavior.close()
             viewModel.selectStep(index)
@@ -67,8 +75,12 @@ class FormActivity : AppCompatActivity() {
             showPage(index)
         }
 
-        viewModel.result.observe(this) {
+        viewModel.errorMessage.observe(this) {
             toast(it)
+        }
+
+        viewModel.result.observe(this) {
+            startActivity(ReportActivity.getIntent(this, it))
         }
 
         rollUp.setOnClickListener {
@@ -80,16 +92,18 @@ class FormActivity : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
+        outState.putSerializable("fuck", viewModel._inputs)
         outState.putInt(SELECTED_STEP_ARG, viewModel.selectedStep.value ?: 0)
     }
 
     @Suppress("DEPRECATION")
     private fun applyInsets() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
-            backdrop.setOnApplyWindowInsetsListener { view, insets ->
+            backdrop.setOnApplyWindowInsetsListener { _, insets ->
 //                view.padding(top = insets.systemWindowInsetTop)
-                steps.padding(top = insets.systemWindowInsetTop)
-                rollUp.margin(top = insets.systemWindowInsetTop)
+                val top = insets.systemWindowInsetTop + 8.dpToPx()
+                steps.padding(top = top)
+                rollUp.margin(top = top)
                 backdropBehavior.setTopInset(insets.systemWindowInsetTop)
                 backdropBehavior.setBottomInset(insets.systemWindowInsetBottom)
                 insets.copy(top = 0)
@@ -132,7 +146,7 @@ class FormActivity : AppCompatActivity() {
                 }
                 R.id.exit -> {
                     toast("Exited")
-//                    logout()
+                    logout()
                 }
             }
         }

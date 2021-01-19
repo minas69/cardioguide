@@ -86,10 +86,10 @@ fun TextInputLayout.getInputText(): String {
     return et.text.toString()
 }
 
-fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
+fun EditText.afterTextChanged(afterTextChanged: (CharSequence) -> Unit) {
     this.addTextChangedListener(object : TextWatcher {
-        override fun afterTextChanged(editable: Editable?) {
-            afterTextChanged.invoke(editable.toString())
+        override fun afterTextChanged(editable: Editable) {
+            afterTextChanged.invoke(editable)
         }
 
         override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}

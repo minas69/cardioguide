@@ -613,5 +613,290 @@
         ]
       }
     ]
+  },
+  {
+    "id": 6,
+    "name": "Общий анализ крови",
+    "attributes": [
+      {
+        "id": 34,
+        "name": "Дата",
+        "inputType": "date"
+      },
+      {
+        "id": 34,
+        "name": "Лейкоциты",
+        "inputType": "float"
+      },
+      {
+        "id": 34,
+        "name": "Эритроциты",
+        "inputType": "float"
+      },
+      {
+        "id": 34,
+        "name": "Гемоглобин",
+        "inputType": "unsigned"
+      },
+      {
+        "id": 34,
+        "name": "Тромбоциты",
+        "inputType": "unsigned"
+      },
+      {
+        "id": 34,
+        "name": "СОЭ",
+        "inputType": "unsigned"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Биохимический анализ крови",
+    "attributes": [
+      {
+        "id": 34,
+        "name": "Дата",
+        "inputType": "date"
+      },
+      {
+        "id": 34,
+        "name": "Белок",
+        "inputType": "float"
+      },
+      {
+        "id": 34,
+        "name": "Мочевина",
+        "inputType": "float"
+      },
+      {
+        "id": 34,
+        "name": "Креатинин",
+        "inputType": "unsigned"
+      },
+      {
+        "id": 34,
+        "name": "Глюкоза",
+        "inputType": "float"
+      },
+      {
+        "id": 34,
+        "name": "АСТ",
+        "inputType": "float"
+      },
+      {
+        "id": 34,
+        "name": "АЛТ",
+        "inputType": "float"
+      },
+      {
+        "id": 34,
+        "name": "Холестерин",
+        "inputType": "float"
+      },
+      {
+        "id": 34,
+        "name": "Общий билирубин",
+        "inputType": "float"
+      },
+      {
+        "id": 34,
+        "name": "ТТГ",
+        "inputType": "float"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "name": "УЗИ сердца (ЭХОКГ)",
+    "attributes": [
+      {
+        "id": 34,
+        "name": "Дата",
+        "inputType": "date"
+      },
+      {
+        "id": 34,
+        "name": "Левое предсердие, продольный размер",
+        "inputType": "unsigned",
+        "suffixText": "мм"
+      },
+      {
+        "id": 34,
+        "name": "Левое предсердие, поперечный размер",
+        "inputType": "unsigned",
+        "suffixText": "мм"
+      },
+      {
+        "id": 34,
+        "name": "КДР",
+        "inputType": "unsigned",
+        "suffixText": "мм"
+      },
+      {
+        "id": 34,
+        "name": "КСР",
+        "inputType": "unsigned",
+        "suffixText": "мм"
+      },
+      {
+        "id": 34,
+        "name": "КДО",
+        "inputType": "unsigned",
+        "suffixText": "мм"
+      },
+      {
+        "id": 34,
+        "name": "КСО",
+        "inputType": "unsigned",
+        "suffixText": "мм"
+      },
+      {
+        "id": 34,
+        "name": "ФВ",
+        "inputType": "unsigned",
+        "suffixText": "%"
+      },
+      {
+        "id": 34,
+        "name": "МЖП в диастолу",
+        "inputType": "unsigned",
+        "suffixText": "мм"
+      },
+      {
+        "id": 34,
+        "name": "ЗСЛЖ в диастолу",
+        "inputType": "unsigned",
+        "suffixText": "мм"
+      },
+      {
+        "id": 34,
+        "name": "ММЛЖ",
+        "inputType": "unsigned",
+        "suffixText": "г"
+      },
+      {
+        "id": 34,
+        "name": "ОТС",
+        "inputType": "float"
+      },
+      {
+        "id": 34,
+        "name": "Правое предсердие, продольный размер",
+        "inputType": "unsigned",
+        "suffixText": "мм"
+      },
+      {
+        "id": 34,
+        "name": "Правый желудочек, продольный размер",
+        "inputType": "unsigned",
+        "suffixText": "мм"
+      },
+      {
+        "id": 34,
+        "name": "Правый желудочек, толщина стенки",
+        "inputType": "unsigned",
+        "suffixText": "мм"
+      },
+      {
+        "id": 34,
+        "name": "Легочная артерия, диаметр ствола",
+        "inputType": "unsigned",
+        "suffixText": "мм"
+      },
+      {
+        "id": 34,
+        "name": "СДЛА",
+        "inputType": "unsigned",
+        "suffixText": "мм рт.ст."
+      },
+      {
+        "id": 34,
+        "name": "Нижняя полая вена, диаметр",
+        "inputType": "unsigned",
+        "suffixText": "мм"
+      },
+      {
+        "id": 34,
+        "name": "Наличие диастолической дисфункции ЛЖ",
+        "inputType": "checkbox"
+      },
+      {
+        "id": 34,
+        "name": "Регургитация на митральном клапане, степень",
+        "inputType": "radioGroup",
+        "options": ["1", "2", "3", "4"]
+      },
+      {
+        "id": 34,
+        "name": "Регургитация на аортальном клапане, степень",
+        "inputType": "radioGroup",
+        "options": ["1", "2", "3", "4"]
+      },
+      {
+        "id": 34,
+        "name": "Регургитация на трикуспидальном клапане, степень",
+        "inputType": "radioGroup",
+        "options": ["1", "2", "3", "4"]
+      },
+      {
+        "id": 34,
+        "name": "Регургитация на клапане легочной артерии, степень",
+        "inputType": "radioGroup",
+        "options": ["1", "2", "3", "4"]
+      },
+      {
+        "id": 34,
+        "name": "Легочная гипертензия, степень",
+        "inputType": "radioGroup",
+        "options": ["1", "2", "3", "4"]
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Холтеровское мониторирование (ХМЭКГ)",
+    "attributes": [
+      {
+        "id": 34,
+        "name": "Дата",
+        "inputType": "date"
+      },
+      {
+        "id": 34,
+        "name": "ЧСС минимальная за сутки",
+        "inputType": "unsigned",
+        "suffixText": "уд./мин"
+      },
+      {
+        "id": 34,
+        "name": "ЧСС максимальная за сутки",
+        "inputType": "unsigned",
+        "suffixText": "уд./мин"
+      },
+      {
+        "id": 34,
+        "name": "ЧСС средняя за сутки",
+        "inputType": "unsigned",
+        "suffixText": "уд./мин"
+      },
+      {
+        "id": 34,
+        "name": "Циркадный индекс (ЦИ)",
+        "inputType": "float"
+      },
+      {
+        "id": 34,
+        "name": "Количество наджелудочковых экстрасистол всего",
+        "inputType": "unsigned",
+        "suffixText": "шт"
+      },
+      {
+        "id": 34,
+        "name": "Количество желудочковых экстрасистол всего",
+        "inputType": "unsigned",
+        "suffixText": "шт"
+      }
+    ]
   }
 ]

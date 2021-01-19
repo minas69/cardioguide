@@ -1,5 +1,7 @@
 package com.example.medicalapp
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.descriptors.SerialDescriptor
@@ -15,9 +17,11 @@ class InputSerializer : KSerializer<Input> {
         const val DATE_INPUT_TYPE = "date"
         const val OPTIONS_INPUT_TYPE = "options"
         const val INTEGER_INPUT_TYPE = "unsigned"
+        const val FLOAT_INPUT_TYPE = "float"
         const val CHECKBOX_INPUT_TYPE = "checkbox"
         const val RADIO_GROUP_INPUT_TYPE = "radioGroup"
         const val CHECKBOX_GROUP_INPUT_TYPE = "checkboxGroup"
+        const val SLIDER_INPUT_TYPE = "slider"
     }
 
     override val descriptor: SerialDescriptor = InputSurrogate.serializer().descriptor
@@ -31,9 +35,11 @@ class InputSerializer : KSerializer<Input> {
                 DATE_INPUT_TYPE -> DateInput(id, name, required)
                 OPTIONS_INPUT_TYPE -> OptionsInput(id, name, required, options!!)
                 INTEGER_INPUT_TYPE -> IntegerInput(id, name, required, suffixText)
-                CHECKBOX_INPUT_TYPE -> CheckBox(id, name, required, thenAttributes)
-                RADIO_GROUP_INPUT_TYPE -> RadioGroup(id, name, required, options!!, thenAttributes)
-                CHECKBOX_GROUP_INPUT_TYPE -> CheckboxGroup(id, name, required, options!!)
+                FLOAT_INPUT_TYPE -> FloatInput(id, name, required, suffixText)
+                CHECKBOX_INPUT_TYPE -> CheckBoxInput(id, name, required, thenAttributes)
+                RADIO_GROUP_INPUT_TYPE -> RadioGroupInput(id, name, required, options!!, thenAttributes)
+                CHECKBOX_GROUP_INPUT_TYPE -> CheckboxGroupInput(id, name, required, options!!)
+//                SLIDER_INPUT_TYPE -> SliderInput(id, name, required, Pair(from!!, to!!))
                 else -> throw Exception("There's no such inputType=$inputType")
             }
         }
@@ -46,10 +52,11 @@ class InputSerializer : KSerializer<Input> {
 
 //@Serializable(with = StepSerializer::class)
 @Serializable
-data class Step(val id: Int, val name: String, val attributes: List<Input>)
+@Parcelize
+data class Step(val id: Int, val name: String, val attributes: List<Input>): Parcelable
 
 @Serializable(with = InputSerializer::class)
-sealed class Input(val id: Int, val name: String, val required: Boolean) {
+sealed class Input: Parcelable {
 
     abstract fun isFilled(): Boolean
 
@@ -57,12 +64,13 @@ sealed class Input(val id: Int, val name: String, val required: Boolean) {
 
 }
 
+@Parcelize
 class TextInput(
-    id: Int,
-    name: String,
-    required: Boolean,
-    var input: String = ""
-) : Input(id, name, required) {
+    val id: String,
+    val name: String,
+    val required: Boolean,
+    var input: CharSequence = ""
+) : Input() {
 
     override fun isFilled() = input.isNotEmpty()
 
@@ -73,12 +81,13 @@ class TextInput(
 
 }
 
+@Parcelize
 class DateInput(
-    id: Int,
-    name: String,
-    required: Boolean,
+    val id: String,
+    val name: String,
+    val required: Boolean,
     var input: String = ""
-) : Input(id, name, required) {
+) : Input() {
 
     override fun isFilled() = input.isNotEmpty()
 
@@ -89,12 +98,13 @@ class DateInput(
 
 }
 
+@Parcelize
 class OptionsInput(
-    id: Int,
-    name: String,
-    required: Boolean,
+    val id: String,
+    val name: String,
+    val required: Boolean,
     val options: List<String>
-) : Input(id, name, required) {
+) : Input() {
 
     var selected: Int? = null
 
@@ -107,13 +117,14 @@ class OptionsInput(
 
 }
 
+@Parcelize
 class IntegerInput(
-    id: Int,
-    name: String,
-    required: Boolean,
+    val id: String,
+    val name: String,
+    val required: Boolean,
     val suffix: String?,
     var input: Int? = null
-) : Input(id, name, required) {
+) : Input() {
 
     override fun isFilled() = input != null
 
@@ -124,12 +135,31 @@ class IntegerInput(
 
 }
 
-class CheckBox(
-    id: Int,
-    name: String,
-    required: Boolean,
+@Parcelize
+class FloatInput(
+    val id: String,
+    val name: String,
+    val required: Boolean,
+    val suffix: String?,
+    var input: Float? = null
+) : Input() {
+
+    override fun isFilled() = input != null
+
+    override fun toHashMap() = hashMapOf(
+        "id" to id,
+        "value" to input
+    )
+
+}
+
+@Parcelize
+class CheckBoxInput(
+    val id: String,
+    val name: String,
+    val required: Boolean,
     val thenAttributes: List<Input>? = null
-) : Input(id, name, required) {
+) : Input() {
 
     var isChecked: Boolean = false
 
@@ -142,13 +172,14 @@ class CheckBox(
 
 }
 
-class RadioGroup(
-    id: Int,
-    name: String,
-    required: Boolean,
+@Parcelize
+class RadioGroupInput(
+    val id: String,
+    val name: String,
+    val required: Boolean,
     val options: List<String>,
     val thenAttributes: List<Input>? = null
-) : Input(id, name, required) {
+) : Input() {
 
     var checked: Int? = null
 
@@ -161,12 +192,13 @@ class RadioGroup(
 
 }
 
-class CheckboxGroup(
-    id: Int,
-    name: String,
-    required: Boolean,
+@Parcelize
+class CheckboxGroupInput(
+    val id: String,
+    val name: String,
+    val required: Boolean,
     val options: List<String>
-) : Input(id, name, required) {
+) : Input() {
 
     var checked = mutableListOf<Int>()
 
@@ -178,3 +210,21 @@ class CheckboxGroup(
     )
 
 }
+
+//class SliderInput(
+//    id: Int,
+//    name: String,
+//    required: Boolean,
+//    val range: Pair<Int, Int>
+//) : Input(id, name, required) {
+//
+//    var value = 0
+//
+//    override fun isFilled() = value != 0
+//
+//    override fun toHashMap() = hashMapOf(
+//        "id" to id,
+//        "value" to value
+//    )
+//
+//}

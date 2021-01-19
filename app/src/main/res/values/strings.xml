@@ -26,7 +26,7 @@
 
     // Strings for Report Screen
     <string name="title_activity_report">Результат</string>
-    <string name="risk_label_text">Риск</string>
+    <string name="risk_label_text">Риск сердечно-сосудистых заболеваний по шкале Score</string>
     <string name="wide_risk_label_text">Риск за 10 лет</string>
     <string name="optimal_risk_label_text">Оптимальный риск</string>
     <string name="statin_label_text">Статин</string>

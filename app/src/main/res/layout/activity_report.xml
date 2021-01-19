@@ -24,8 +24,6 @@
 
     <include layout="@layout/content_report" />
 
-    <include layout="@layout/content_error" />
-
     <ProgressBar
         android:id="@+id/loading"
         android:layout_width="wrap_content"

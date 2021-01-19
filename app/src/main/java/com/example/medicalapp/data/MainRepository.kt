@@ -1,16 +1,17 @@
 package com.example.medicalapp.data
 
-import com.example.medicalapp.Input
-import com.example.medicalapp.Step
+import com.example.medicalapp.data.model.ResultResponse
 
 
 object MainRepository {
 
     private val dataSource = MainDataSource()
 
-    suspend fun post(steps: List<Step>): String {
-        val data = mutableListOf<Input>()
-        steps.forEach { data.addAll(it.attributes) }
+    suspend fun post(inputs: Map<String, *>): ResultResponse {
+        val data = mutableListOf<HashMap<String, *>>()
+        inputs.forEach { input ->
+            data.add(hashMapOf("id" to input.key, "value" to input.value))
+        }
         return dataSource.post(data)
     }
 }
