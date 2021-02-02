@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.EditText
 import android.widget.FrameLayout
 import androidx.fragment.app.FragmentManager
+import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.textfield.TextInputLayout
 import java.text.DateFormat
@@ -48,6 +49,14 @@ class DatePicker @JvmOverloads constructor(
         }
         get() = textInputLayout.suffixText
 
+    var isRequired: Boolean = false
+        set(value) {
+            field = value
+            if (value) {
+                textInputLayout.hint = "$hint*"
+            }
+        }
+
     init {
         inflate(context, R.layout.layout_text_field, this)
 
@@ -61,8 +70,26 @@ class DatePicker @JvmOverloads constructor(
         }
     }
 
-    fun setOnDateChangedListener(fragmentManager: FragmentManager, listener: (Long) -> Unit) {
+    fun clear() {
+        textInputLayout.isHintAnimationEnabled = false
+        editText.text.clear()
+        textInputLayout.isHintAnimationEnabled = true
+    }
+
+    fun setOnDateChangedListener(fragmentManager: FragmentManager, min: Long?, max: Long?, listener: (Long) -> Unit) {
         val builder = MaterialDatePicker.Builder.datePicker()
+        if (max != null || min != null) {
+            val calendarConstraintsBuilder = CalendarConstraints.Builder()
+            if (min != null) {
+                calendarConstraintsBuilder.setStart(System.currentTimeMillis() - min)
+            }
+            if (max != null) {
+                calendarConstraintsBuilder
+                    .setEnd(System.currentTimeMillis() - max)
+                    .setOpenAt(System.currentTimeMillis() - max)
+            }
+            builder.setCalendarConstraints(calendarConstraintsBuilder.build())
+        }
         val datePicker = builder.build()
         datePicker.addOnPositiveButtonClickListener {
             editText.setText(DateFormat.getDateInstance(DateFormat.SHORT).format(Date(it)))

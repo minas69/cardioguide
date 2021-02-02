@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MedicalApp</string>
+    <string name="app_name">КардиоГид</string>
 
     // Strings for Login Screen
     <string name="prompt_email">Эл. почта</string>

@@ -1,15 +1,16 @@
 package com.example.views
 
 import android.content.Context
-import android.text.Editable
-import android.text.InputType
-import android.text.TextWatcher
+import android.graphics.Color
+import android.text.*
+import android.text.style.ForegroundColorSpan
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.core.widget.addTextChangedListener
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -47,6 +48,21 @@ class TextField @JvmOverloads constructor(
             textInputLayout.suffixText = value
         }
         get() = textInputLayout.suffixText
+
+    var helperText: CharSequence?
+        set(value) {
+            textInputLayout.isHelperTextEnabled = value != null
+            textInputLayout.helperText = value
+        }
+        get() = textInputLayout.suffixText
+
+    var isRequired: Boolean = false
+        set(value) {
+            field = value
+            if (value) {
+                textInputLayout.hint = "$hint*"
+            }
+        }
 
     init {
         inflate(context, R.layout.layout_text_field, this)

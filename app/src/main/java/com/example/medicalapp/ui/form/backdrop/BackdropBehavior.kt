@@ -1,4 +1,4 @@
-package com.example.medicalapp.ui.view.backdrop
+package com.example.medicalapp.ui.form.backdrop
 
 import android.content.Context
 import android.os.Bundle
@@ -13,8 +13,8 @@ import androidx.annotation.IdRes
 import androidx.appcompat.widget.Toolbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.children
-import com.example.medicalapp.R
-import com.example.medicalapp.margin
+import com.example.views.R
+import com.example.views.margin
 
 
 class BackdropBehavior : CoordinatorLayout.Behavior<View> {

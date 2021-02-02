@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "869930621244",
-    "firebase_url": "https://fir-playground-f1fe0.firebaseio.com",
-    "project_id": "fir-playground-f1fe0",
-    "storage_bucket": "fir-playground-f1fe0.appspot.com"
+    "project_number": "118444488714",
+    "firebase_url": "https://score-school.firebaseio.com",
+    "project_id": "score-school",
+    "storage_bucket": "score-school.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:869930621244:android:feaa3bf48976158fdd6639",
+        "mobilesdk_app_id": "1:118444488714:android:b4ef85c47e27ac3ac387f3",
         "android_client_info": {
           "package_name": "com.example.medicalapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "869930621244-jk74dlgfpi8t18jpvrkcb436r9h46ccd.apps.googleusercontent.com",
+          "client_id": "118444488714-037474irntnkbtnfleuftjlua161fm1f.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC710Q368bvvHlwP9ufIZZjIKhWxywTGbA"
+          "current_key": "AIzaSyBS7HFkpkLlOJ3xJckKQWHqrndc5610KO0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "869930621244-jk74dlgfpi8t18jpvrkcb436r9h46ccd.apps.googleusercontent.com",
+              "client_id": "118444488714-037474irntnkbtnfleuftjlua161fm1f.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

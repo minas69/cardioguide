@@ -2,33 +2,43 @@
   {
     "id": 0,
     "name": "Общие данные",
+    "containsRequired": true,
     "attributes": [
       {
-        "id": 0,
+        "id": "SXWTY2NWQ1XsUp05xvdy",
+        "name": "Прикрепить фото добровольного согласия",
+        "inputType": "photo",
+        "max": 1,
+        "required": true
+      },
+      {
+        "id": "fBsE0R8mKTWjPh8tjgys",
         "name": "Фамилия",
         "inputType": "text",
         "required": true
       },
       {
-        "id": 1,
+        "id": "cCT8tCn5RKmnn5hm66zZ",
         "name": "Имя",
         "inputType": "text",
         "required": true
       },
       {
-        "id": 2,
+        "id": "xd8UIU4Ws8Hbpf8B7hdL",
         "name": "Отчество",
         "inputType": "text",
         "required": true
       },
       {
-        "id": 3,
+        "id": "xBpET80SqadnrMnErCXz",
         "name": "Дата рождения",
         "inputType": "date",
+        "min": 2837505600000,
+        "max": 633830400000,
         "required": true
       },
       {
-        "id": 4,
+        "id": "zbm9VRuOkCdX5BkwmyyD",
         "name": "Пол",
         "inputType": "options",
         "options": [
@@ -38,31 +48,33 @@
         "required": true
       },
       {
-        "id": 5,
+        "id": "8xVn3IP8LUN7TTGr1fn8",
         "name": "Рост",
         "inputType": "unsigned",
         "suffixText": "см",
         "required": true
       },
       {
-        "id": 6,
+        "id": "kZqXoXv9az0n03fCfmgR",
         "name": "Вес",
         "inputType": "unsigned",
         "suffixText": "кг",
         "required": true
       },
       {
-        "id": 7,
-        "name": "Среднее значение систолического АД за последние две недели",
+        "id": "Rtpr6Q1ZgQxj8lgfllip",
+        "name": "Среднее значение систолического АД",
         "inputType": "unsigned",
         "suffixText": "мм.рт.ст.",
+        "helperText": "За последние две недели",
         "required": true
       },
       {
-        "id": 8,
-        "name": "Среднее значение диастолического АД за последние две недели",
+        "id": "V2FjQDvZxUPJg1dMefBV",
+        "name": "Среднее значение диастолического АД",
         "inputType": "unsigned",
         "suffixText": "мм.рт.ст.",
+        "helperText": "За последние две недели",
         "required": true
       }
     ]
@@ -70,70 +82,36 @@
   {
     "id": 1,
     "name": "Жалобы за послений месяц",
+    "containsRequired": true,
     "attributes": [
       {
-        "id": 9,
-        "name": "Нет жалоб",
-        "inputType": "checkbox"
-      },
-      {
-        "id": 10,
-        "name": "Боль в сердце",
-        "inputType": "checkbox"
-      },
-      {
-        "id": 11,
-        "name": "Перебои в работе сердца",
-        "inputType": "checkbox"
-      },
-      {
-        "id": 12,
-        "name": "Одышка",
-        "inputType": "checkbox"
-      },
-      {
-        "id": 13,
-        "name": "Кашель",
-        "inputType": "checkbox"
-      },
-      {
-        "id": 14,
-        "name": "Отделение мокроты",
-        "inputType": "checkbox"
-      },
-      {
-        "id": 15,
-        "name": "Головокружение",
-        "inputType": "checkbox"
-      },
-      {
-        "id": 16,
-        "name": "Головная боль",
-        "inputType": "checkbox"
-      },
-      {
-        "id": 17,
-        "name": "Шум в ушах",
-        "inputType": "checkbox"
-      },
-      {
-        "id": 18,
-        "name": "Онемение ног, рук",
-        "inputType": "checkbox"
-      },
-      {
-        "id": 19,
-        "name": "Бессонница",
-        "inputType": "checkbox"
+        "id": "U7TBhMGoINXbgNoRzMxZ",
+        "name": "",
+        "inputType": "checkboxGroup",
+        "options": [
+          "Нет балоб",
+          "Боль в сердце",
+          "Перебои в работе сердца",
+          "Одышка",
+          "Кашель",
+          "Отделение мокроты",
+          "Головокружение",
+          "Головная боль",
+          "Шум в ушах",
+          "Онемение ног, рук",
+          "Бессонница"
+        ],
+        "required": true
       }
     ]
   },
   {
     "id": 2,
     "name": "Опросник по здоровью EQ-5D-3L",
+    "containsRequired": true,
     "attributes": [
       {
-        "id": 20,
+        "id": "dBxm0h11exSddGJTuLRX",
         "name": "Подвижность",
         "inputType": "radioGroup",
         "options": [
@@ -144,7 +122,7 @@
         "required": true
       },
       {
-        "id": 21,
+        "id": "wJWxmd7U78C1cnbwSdzS",
         "name": "Уход за собой",
         "inputType": "radioGroup",
         "options": [
@@ -155,7 +133,7 @@
         "required": true
       },
       {
-        "id": 22,
+        "id": "oSm4ZEZDQkSpMe5WVEPw",
         "name": "Повседневная деятельность",
         "inputType": "radioGroup",
         "options": [
@@ -166,7 +144,7 @@
         "required": true
       },
       {
-        "id": 23,
+        "id": "R4wnG90AJnJ7c6GIHO8w",
         "name": "Боль/Дискомфорт",
         "inputType": "radioGroup",
         "options": [
@@ -177,7 +155,7 @@
         "required": true
       },
       {
-        "id": 24,
+        "id": "IQRIndqYqVDy7OcFMH2Y",
         "name": "Древога/Депрессия",
         "inputType": "radioGroup",
         "options": [
@@ -194,7 +172,7 @@
     "name": "Анамнез",
     "attributes": [
       {
-        "id": 25,
+        "id": "FfhX2bkktiVGVcSeNJxi",
         "name": "Семейное положение",
         "inputType": "options",
         "options": [
@@ -203,24 +181,24 @@
         ]
       },
       {
-        "id": 26,
+        "id": "n8Jp7wEU6gJjS2pmwG8f",
         "name": "Наличие детей",
         "inputType": "unsigned"
       },
       {
-        "id": 27,
+        "id": "THIgtPBWg9luk6xI2QaI",
         "name": "Просмотр телевизора или компьютера",
         "inputType": "unsigned",
         "suffixText": "часов в день"
       },
       {
-        "id": 28,
+        "id": "JTvGlb40EMbcy0SK2Dgb",
         "name": "Ходьба на улице",
         "inputType": "unsigned",
         "suffixText": "часов в день"
       },
       {
-        "id": 29,
+        "id": "85jDi2J3ZZXUELdw3cqV",
         "name": "Черта личности",
         "inputType": "options",
         "options": [
@@ -229,27 +207,27 @@
         ]
       },
       {
-        "id": 30,
+        "id": "smvS1V2rNa4tcOXR23To",
         "name": "Количество выкуренных сигарет в день",
         "inputType": "unsigned"
       },
       {
-        "id": 31,
+        "id": "vA9xM8tEIKf0XjtBW8ka",
         "name": "Работающий",
         "inputType": "checkbox"
       },
       {
-        "id": 32,
+        "id": "O2uoJcKpmKMpFJNz8JEW",
         "name": "Наличие домашних животных",
         "inputType": "checkbox"
       },
       {
-        "id": 33,
+        "id": "2EYq4TXloQw2zZZSgcSd",
         "name": "Стрессоустойчивость",
         "inputType": "checkbox"
       },
       {
-        "id": 34,
+        "id": "xWGebDtFmIQO8RMeLVx6",
         "name": "Метеозависимость",
         "inputType": "checkbox"
       }
@@ -260,12 +238,12 @@
     "name": "Наличие болезней",
     "attributes": [
       {
-        "id": 34,
+        "id": "51HmPz5OXa8W5X3XiJa0",
         "name": "Артериальная гипертензия",
         "inputType": "checkbox",
         "thenAttributes": [
           {
-            "id": 34,
+            "id": "T5WPQRmCLYq3DdnPKsq6",
             "name": "Стаж заболевания",
             "inputType": "unsigned",
             "suffixText": "лет"
@@ -273,17 +251,17 @@
         ]
       },
       {
-        "id": 34,
+        "id": "ZOh0Yt1awKxrMWIMpuQ1",
         "name": "Фибрилляция предсердий (мерцательная аритмия)",
         "inputType": "checkbox"
       },
       {
-        "id": 34,
+        "id": "aM3u4LWNASxW7deMweoy",
         "name": "Другие нарушения ритма сердца (кроме фибрилляции предсердий)",
         "inputType": "checkbox",
         "thenAttributes": [
           {
-            "id": 34,
+            "id": "9azwY983Fv93Zic2e0MH",
             "name": "Стаж заболевания",
             "inputType": "unsigned",
             "suffixText": "лет"
@@ -291,12 +269,12 @@
         ]
       },
       {
-        "id": 34,
+        "id": "u86OKigx8etodvcwfO5I",
         "name": "ИБС. Стенокардия",
         "inputType": "checkbox",
         "thenAttributes": [
           {
-            "id": 34,
+            "id": "rCovcsb9wjyP2UTwiVit",
             "name": "Стаж заболевания",
             "inputType": "unsigned",
             "suffixText": "лет"
@@ -304,12 +282,12 @@
         ]
       },
       {
-        "id": 34,
+        "id": "6N2YSIw9LQkMcS3VhOGt",
         "name": "ПИКС (перенесенный инфаркт миокарда)",
         "inputType": "checkbox",
         "thenAttributes": [
           {
-            "id": 34,
+            "id": "Qp5eMhC11Hu5BRTFWw7D",
             "name": "Стаж заболевания",
             "inputType": "unsigned",
             "suffixText": "лет"
@@ -317,12 +295,12 @@
         ]
       },
       {
-        "id": 34,
+        "id": "YfUCA3jP5K3mCF3jKo9n",
         "name": "Сахарный диабет",
         "inputType": "checkbox",
         "thenAttributes": [
           {
-            "id": 34,
+            "id": "74Mz7aVuTX0zWdSuUQKu",
             "name": "Стаж заболевания",
             "inputType": "unsigned",
             "suffixText": "лет"
@@ -330,52 +308,52 @@
         ]
       },
       {
-        "id": 34,
+        "id": "5nQMrASGxTv5LZTq6oJw",
         "name": "ОНМК (мозговой инсульт)",
         "inputType": "checkbox"
       },
       {
-        "id": 34,
+        "id": "A9bxqnW6RJQqoabhQByg",
         "name": "Болезни щитовидной железы",
         "inputType": "checkbox"
       },
       {
-        "id": 34,
+        "id": "jeI0FCsJIjGPqtI9AEN7",
         "name": "Болезни почек",
         "inputType": "checkbox"
       },
       {
-        "id": 34,
+        "id": "ch1YMGrfxP21eaQCsAEw",
         "name": "Болезни легких (бронхиальная астма, ХОБЛ)",
         "inputType": "checkbox"
       },
       {
-        "id": 34,
+        "id": "OOXQx22KUsAAp9PBnPcX",
         "name": "Болезни печени (гепатит, цирроз)",
         "inputType": "checkbox"
       },
       {
-        "id": 34,
+        "id": "XBV4kYvWDHjnwDeAkzcv",
         "name": "COVID-19",
         "inputType": "checkbox",
         "thenAttributes": [
           {
-            "id": 34,
+            "id": "sWhcBl9OfPwE81LRxzkB",
             "name": "Дата заболевания",
             "inputType": "date"
           },
           {
-            "id": 34,
+            "id": "Np3dP0tMawSzvIpxAoKW",
             "name": "Процент поражения легочной ткани ",
             "inputType": "unsigned"
           },
           {
-            "id": 34,
+            "id": "GDUJ5vqGnj6B6WrO7Jrs",
             "name": "Проводилось ли лечение в стационаре",
             "inputType": "checkbox"
           },
           {
-            "id": 34,
+            "id": "RvezyFB9BE1lpsc2Tkc5",
             "name": "Жалобы на момент заболевания",
             "inputType": "checkboxGroup",
             "options": [
@@ -390,12 +368,12 @@
         ]
       },
       {
-        "id": 34,
+        "id": "fsJ1qbDqD56SsZDCaj1E",
         "name": "Онкологические заболевания",
         "inputType": "checkbox",
         "thenAttributes": [
           {
-            "id": 34,
+            "id": "Vll7Lt9cVKBzV3Jughtk",
             "name": "Стаж заболевания",
             "inputType": "unsigned",
             "suffixText": "лет"
@@ -409,7 +387,7 @@
     "name": "Принимаемые препараты",
     "attributes": [
       {
-        "id": 34,
+        "id": "LMRRxIpQdcME3h5R53z7",
         "name": "Ингибиторы АПФ / сартаны",
         "inputType": "radioGroup",
         "options": [
@@ -431,15 +409,15 @@
         ],
         "thenAttributes": [
           {
-            "id": 34,
+            "id": "IJSvi7JejufUPc1ttYsA",
             "name": "Суточная дозировка препарата",
-            "inputType": "unsigned",
+            "inputType": "float",
             "suffixText": "мг"
           }
         ]
       },
       {
-        "id": 34,
+        "id": "7sFEVieZbrEbjy4g8k7m",
         "name": "Антагонисты кальция",
         "inputType": "radioGroup",
         "options": [
@@ -455,15 +433,15 @@
         ],
         "thenAttributes": [
           {
-            "id": 34,
+            "id": "UjDFhrhLBrNjS1NqGsYF",
             "name": "Суточная дозировка препарата",
-            "inputType": "unsigned",
+            "inputType": "float",
             "suffixText": "мг"
           }
         ]
       },
       {
-        "id": 34,
+        "id": "VADuUzJnpXqMTEE6AYWK",
         "name": "Диуретики",
         "inputType": "radioGroup",
         "options": [
@@ -476,15 +454,15 @@
         ],
         "thenAttributes": [
           {
-            "id": 34,
+            "id": "nebEXePpDLv5zdU4nl0a",
             "name": "Суточная дозировка препарата",
-            "inputType": "unsigned",
+            "inputType": "float",
             "suffixText": "мг"
           }
         ]
       },
       {
-        "id": 34,
+        "id": "BqRIzK99ydeT2KJSZnPZ",
         "name": "Бета-блокаторы",
         "inputType": "radioGroup",
         "options": [
@@ -496,20 +474,21 @@
         ],
         "thenAttributes": [
           {
-            "id": 34,
+            "id": "E7U3F5NIX8dur4R2AKzV",
             "name": "Суточная дозировка препарата",
-            "inputType": "unsigned",
+            "inputType": "float",
             "suffixText": "мг"
           }
         ]
       },
       {
-        "id": 34,
-        "name": "Нитраты (нитроглицерин, кардикет, эринит, нитросорбид и др.) - укажите количество приема нитратов, за месяц",
+        "id": "JtxPLIUvy2LYllB3drPm",
+        "name": "Нитраты (кардикет, эринит и др.)",
+        "helperText": "Укажите количество приема нитратов за месяц",
         "inputType": "unsigned"
       },
       {
-        "id": 34,
+        "id": "zNlQG70afYdCpNDAopC6",
         "name": "Антикоагулянты",
         "inputType": "radioGroup",
         "options": [
@@ -520,21 +499,21 @@
         ],
         "thenAttributes": [
           {
-            "id": 34,
+            "id": "r5alW9XmMqHCWuP7v64v",
             "name": "Суточная дозировка препарата",
-            "inputType": "unsigned",
+            "inputType": "float",
             "suffixText": "мг"
           },
           {
-            "id": 34,
+            "id": "XBS0LEiGy9LvZ1UmCZYb",
             "name": "Последний уровень МНО, если пациент принимает варфарин",
-            "inputType": "unsigned",
+            "inputType": "float",
             "suffixText": "мг"
           }
         ]
       },
       {
-        "id": 34,
+        "id": "e23U1qGD5jx54NEEmd3X",
         "name": "Статины",
         "inputType": "radioGroup",
         "options": [
@@ -544,15 +523,15 @@
         ],
         "thenAttributes": [
           {
-            "id": 34,
+            "id": "1TFw7feKvLkFfpR4AEpb",
             "name": "Суточная дозировка препарата",
-            "inputType": "unsigned",
+            "inputType": "float",
             "suffixText": "мг"
           }
         ]
       },
       {
-        "id": 34,
+        "id": "P43wRnULhiZ2gK1elOTM",
         "name": "Антиаритмические препараты",
         "inputType": "radioGroup",
         "options": [
@@ -565,20 +544,20 @@
         ],
         "thenAttributes": [
           {
-            "id": 34,
+            "id": "5reCmOCToZDjRXXMz3VC",
             "name": "Суточная дозировка препарата",
-            "inputType": "unsigned",
+            "inputType": "float",
             "suffixText": "мг"
           }
         ]
       },
       {
-        "id": 34,
+        "id": "fIYyaZ5jXgYBBH4aEmj3",
         "name": "Дигоксин",
         "inputType": "checkbox"
       },
       {
-        "id": 34,
+        "id": "wSXubuz3AgSWVOAzrwK2",
         "name": "Антиагреганты",
         "inputType": "checkboxGroup",
         "options": [
@@ -589,7 +568,7 @@
         ]
       },
       {
-        "id": 34,
+        "id": "Q23a58DefJkUskS7KirF",
         "name": "Прочие средства",
         "inputType": "checkboxGroup",
         "options": [
@@ -619,32 +598,38 @@
     "name": "Общий анализ крови",
     "attributes": [
       {
-        "id": 34,
+        "id": "GrHJFgZxjtGQSJXKotff",
+        "name": "Прикрепить фото ОАК с фамилией и датой",
+        "inputType": "photo",
+        "max": 1
+      },
+      {
+        "id": "bYArwTkM2nRp3M9iIjD7",
         "name": "Дата",
         "inputType": "date"
       },
       {
-        "id": 34,
+        "id": "zJDsnnq2qZfJ0HFycKXn",
         "name": "Лейкоциты",
         "inputType": "float"
       },
       {
-        "id": 34,
+        "id": "AmAMi6X3tJ1524MHxvgl",
         "name": "Эритроциты",
         "inputType": "float"
       },
       {
-        "id": 34,
+        "id": "Uzp1teauXQJTEEbUM4md",
         "name": "Гемоглобин",
         "inputType": "unsigned"
       },
       {
-        "id": 34,
+        "id": "xMxqTgfQeExNxYX12nbc",
         "name": "Тромбоциты",
         "inputType": "unsigned"
       },
       {
-        "id": 34,
+        "id": "sO2FuHjVGwbbzmR7sgUg",
         "name": "СОЭ",
         "inputType": "unsigned"
       }
@@ -653,54 +638,64 @@
   {
     "id": 7,
     "name": "Биохимический анализ крови",
+    "containsRequired": true,
     "attributes": [
       {
-        "id": 34,
+        "id": "uDmlEDCNGybdARcBKbRG",
+        "name": "Прикрепить фото БАК с фамилией и датой",
+        "inputType": "photo",
+        "max": 1
+      },
+      {
+        "id": "y2EIcctXdBWyM7WrTaGS",
         "name": "Дата",
         "inputType": "date"
       },
       {
-        "id": 34,
+        "id": "yZpcLIgdkhWymFJHlTWK",
         "name": "Белок",
         "inputType": "float"
       },
       {
-        "id": 34,
+        "id": "1TWxzUXOJcoYwcIDLAFy",
         "name": "Мочевина",
         "inputType": "float"
       },
       {
-        "id": 34,
+        "id": "YzD2yQzzXjWa8x8SfHUs",
         "name": "Креатинин",
+        "required": true,
         "inputType": "unsigned"
       },
       {
-        "id": 34,
+        "id": "dH8WXzotJaTooyqUqVUB",
         "name": "Глюкоза",
+        "required": true,
         "inputType": "float"
       },
       {
-        "id": 34,
+        "id": "xFrjRqlsz6RZ0RPufMHI",
         "name": "АСТ",
         "inputType": "float"
       },
       {
-        "id": 34,
+        "id": "GDuUsVg52LWAOouj4nts",
         "name": "АЛТ",
         "inputType": "float"
       },
       {
-        "id": 34,
+        "id": "kbLLuIAN86QvBlqZ1jZX",
         "name": "Холестерин",
+        "required": true,
         "inputType": "float"
       },
       {
-        "id": 34,
+        "id": "D0JICfXKghjMdgrnD55U",
         "name": "Общий билирубин",
         "inputType": "float"
       },
       {
-        "id": 34,
+        "id": "L8rzPq20D5qliQ6gSz9t",
         "name": "ТТГ",
         "inputType": "float"
       }
@@ -708,145 +703,163 @@
   },
   {
     "id": 9,
+    "name": "ЭКГ",
+    "attributes": [
+      {
+        "id": "AKQhb8kDRsXK6CtBeaUU",
+        "name": "Прикрепить фото ЭКГ с фамилией и датой",
+        "inputType": "photo",
+        "max": 1
+      }
+    ]
+  },
+  {
+    "id": 10,
     "name": "УЗИ сердца (ЭХОКГ)",
     "attributes": [
       {
-        "id": 34,
+        "id": "Za2RTYJM2qJa9RjfpuLt",
+        "name": "Прикрепить фото ЭХОКГ с фамилией и датой",
+        "inputType": "photo",
+        "max": 2
+      },
+      {
+        "id": "iuAg6Yl5FsgXSY2bGAm7",
         "name": "Дата",
         "inputType": "date"
       },
       {
-        "id": 34,
+        "id": "5HjrszMVsuTj2oJyrhsP",
         "name": "Левое предсердие, продольный размер",
         "inputType": "unsigned",
         "suffixText": "мм"
       },
       {
-        "id": 34,
+        "id": "hxSIuVaOgGq2ZEx2u56Y",
         "name": "Левое предсердие, поперечный размер",
         "inputType": "unsigned",
         "suffixText": "мм"
       },
       {
-        "id": 34,
+        "id": "sitZK8DmQu9TRreEuGIA",
         "name": "КДР",
         "inputType": "unsigned",
         "suffixText": "мм"
       },
       {
-        "id": 34,
+        "id": "GSDh7ZTn5wWkT6ziRakG",
         "name": "КСР",
         "inputType": "unsigned",
         "suffixText": "мм"
       },
       {
-        "id": 34,
+        "id": "rL0fPrZK9eWjIFoESrnG",
         "name": "КДО",
         "inputType": "unsigned",
         "suffixText": "мм"
       },
       {
-        "id": 34,
+        "id": "RyNUQTRpFtcgbLmLnygI",
         "name": "КСО",
         "inputType": "unsigned",
         "suffixText": "мм"
       },
       {
-        "id": 34,
+        "id": "tGXmP0Wh1uKvGDjjqYgm",
         "name": "ФВ",
         "inputType": "unsigned",
         "suffixText": "%"
       },
       {
-        "id": 34,
+        "id": "ZDtqTIwIenBdlY7CJ1WO",
         "name": "МЖП в диастолу",
         "inputType": "unsigned",
         "suffixText": "мм"
       },
       {
-        "id": 34,
+        "id": "BoEkcod5dda2fOIUr2Kg",
         "name": "ЗСЛЖ в диастолу",
         "inputType": "unsigned",
         "suffixText": "мм"
       },
       {
-        "id": 34,
+        "id": "hcKifAtT5QN221r7x0cc",
         "name": "ММЛЖ",
         "inputType": "unsigned",
         "suffixText": "г"
       },
       {
-        "id": 34,
+        "id": "BnuMc4BT3IRuY1ctySG7",
         "name": "ОТС",
         "inputType": "float"
       },
       {
-        "id": 34,
+        "id": "xfyTdxizpR2RhrTuwpXg",
         "name": "Правое предсердие, продольный размер",
         "inputType": "unsigned",
         "suffixText": "мм"
       },
       {
-        "id": 34,
+        "id": "lLdc5LyMdrFgiy3EoIvw",
         "name": "Правый желудочек, продольный размер",
         "inputType": "unsigned",
         "suffixText": "мм"
       },
       {
-        "id": 34,
+        "id": "BVFd8O1AxsNzEygnnzRF",
         "name": "Правый желудочек, толщина стенки",
         "inputType": "unsigned",
         "suffixText": "мм"
       },
       {
-        "id": 34,
+        "id": "mu1EqBfC6hMFvTQETHNX",
         "name": "Легочная артерия, диаметр ствола",
         "inputType": "unsigned",
         "suffixText": "мм"
       },
       {
-        "id": 34,
+        "id": "rsIjKAnTWsmXuWDUxojg",
         "name": "СДЛА",
         "inputType": "unsigned",
         "suffixText": "мм рт.ст."
       },
       {
-        "id": 34,
+        "id": "4xIUn1bqXpHqnOEIJEGI",
         "name": "Нижняя полая вена, диаметр",
         "inputType": "unsigned",
         "suffixText": "мм"
       },
       {
-        "id": 34,
+        "id": "3KF9gBrkQoHG8mqxEIve",
         "name": "Наличие диастолической дисфункции ЛЖ",
         "inputType": "checkbox"
       },
       {
-        "id": 34,
+        "id": "goGDdExwjmRdGINxdXxj",
         "name": "Регургитация на митральном клапане, степень",
         "inputType": "radioGroup",
         "options": ["1", "2", "3", "4"]
       },
       {
-        "id": 34,
+        "id": "fh13IeXfgv1BIuoPdqxp",
         "name": "Регургитация на аортальном клапане, степень",
         "inputType": "radioGroup",
         "options": ["1", "2", "3", "4"]
       },
       {
-        "id": 34,
+        "id": "NaGU2CQKvOWIS0LsJzoN",
         "name": "Регургитация на трикуспидальном клапане, степень",
         "inputType": "radioGroup",
         "options": ["1", "2", "3", "4"]
       },
       {
-        "id": 34,
+        "id": "igImv4nd7hst8vPz72rd",
         "name": "Регургитация на клапане легочной артерии, степень",
         "inputType": "radioGroup",
         "options": ["1", "2", "3", "4"]
       },
       {
-        "id": 34,
+        "id": "8pCdcIJeJTk1KyPTjUKr",
         "name": "Легочная гипертензия, степень",
         "inputType": "radioGroup",
         "options": ["1", "2", "3", "4"]
@@ -854,45 +867,51 @@
     ]
   },
   {
-    "id": 10,
+    "id": 11,
     "name": "Холтеровское мониторирование (ХМЭКГ)",
     "attributes": [
       {
-        "id": 34,
+        "id": "vmEJilfZZMA7hXHKBRCz",
+        "name": "Прикрепить фото ХМЭКГ с фамилией и датой",
+        "inputType": "photo",
+        "max": 2
+      },
+      {
+        "id": "hDsYu60ACRmSRc0MChps",
         "name": "Дата",
         "inputType": "date"
       },
       {
-        "id": 34,
+        "id": "u0sJdwE5iqImd8WWBxMD",
         "name": "ЧСС минимальная за сутки",
         "inputType": "unsigned",
         "suffixText": "уд./мин"
       },
       {
-        "id": 34,
+        "id": "BxdAiPwp4HmplnDFVahv",
         "name": "ЧСС максимальная за сутки",
         "inputType": "unsigned",
         "suffixText": "уд./мин"
       },
       {
-        "id": 34,
+        "id": "XclboLJeCJDsd7UcLA2A",
         "name": "ЧСС средняя за сутки",
         "inputType": "unsigned",
         "suffixText": "уд./мин"
       },
       {
-        "id": 34,
+        "id": "KS96fd9RUslcCWQLvhM6",
         "name": "Циркадный индекс (ЦИ)",
         "inputType": "float"
       },
       {
-        "id": 34,
+        "id": "DNOO115Cg1OPbK42IVC4",
         "name": "Количество наджелудочковых экстрасистол всего",
         "inputType": "unsigned",
         "suffixText": "шт"
       },
       {
-        "id": 34,
+        "id": "TqlA1ow39xbqxGes8cB3",
         "name": "Количество желудочковых экстрасистол всего",
         "inputType": "unsigned",
         "suffixText": "шт"

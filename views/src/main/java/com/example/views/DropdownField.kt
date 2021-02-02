@@ -37,6 +37,14 @@ class DropdownField @JvmOverloads constructor(
 //        }
 //        get() = textInputLayout.suffixText
 
+    var isRequired: Boolean = false
+        set(value) {
+            field = value
+            if (value) {
+                textInputLayout.hint = "$hint*"
+            }
+        }
+
     init {
         inflate(context, R.layout.layout_dropdown_field, this)
 

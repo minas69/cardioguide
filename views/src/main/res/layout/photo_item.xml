@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="100dp"
     android:layout_height="100dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -8,6 +8,7 @@
         android:id="@+id/cv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:cardElevation="0dp"
         app:cardCornerRadius="8dp"
         android:layout_margin="6dp">
 
@@ -24,4 +25,13 @@
 
     </androidx.cardview.widget.CardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageButton
+        android:id ="@+id/removeButton"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_close_outlined"
+        android:padding="15dp"
+        android:layout_alignParentEnd="true"
+        />
+
+</RelativeLayout>

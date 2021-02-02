@@ -9,13 +9,13 @@
     tools:context=".ui.form.FormActivity">
 
     <!--Front View-->
-    <com.example.medicalapp.ui.view.backdrop.FrontLayout
+    <com.example.medicalapp.ui.form.backdrop.FrontLayout
         android:id="@+id/frontLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:elevation="4dp"
         android:paddingTop="16dp"
-        app:layout_behavior=".ui.view.backdrop.BackdropBehavior">
+        app:layout_behavior=".ui.form.backdrop.BackdropBehavior">
 
         <FrameLayout
             android:id="@+id/content"
@@ -24,7 +24,7 @@
             android:background="@drawable/backdrop_background"
             app:layout_behavior=".ui.view.backdrop.BackdropBehavior" />
 
-    </com.example.medicalapp.ui.view.backdrop.FrontLayout>
+    </com.example.medicalapp.ui.form.backdrop.FrontLayout>
 
     <!--Back View-->
     <FrameLayout

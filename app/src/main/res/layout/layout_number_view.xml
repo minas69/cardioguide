@@ -5,7 +5,7 @@
     android:id="@+id/avatar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:parentTag="com.example.medicalapp.ui.view.backdrop.NumberView">
+    tools:parentTag="com.example.medicalapp.ui.form.backdrop.NumberView">
 
     <TextView
         android:id="@+id/initial"

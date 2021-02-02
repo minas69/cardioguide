@@ -1,24 +1,19 @@
-package com.example.medicalapp.ui.view.backdrop
+package com.example.medicalapp.ui.form.backdrop
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.os.Build
 import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
 import androidx.core.widget.TextViewCompat
 import com.example.medicalapp.R
-import com.example.medicalapp.dpToPx
 import com.example.medicalapp.margin
-import com.example.medicalapp.padding
+import com.example.views.dpToPx
+import com.example.views.padding
 import com.google.android.material.textview.MaterialTextView
 
 class FrontLayout @JvmOverloads constructor(
@@ -48,6 +43,7 @@ class FrontLayout @JvmOverloads constructor(
             maxLines = 1
             isSingleLine = true
             TextViewCompat.setTextAppearance(this, R.style.AppTheme_TextAppearance_Title)
+            
         }
         addView(subheader)
 

@@ -2,18 +2,23 @@ package com.example.medicalapp
 
 import android.content.Context
 import android.content.res.Resources
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Build
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.TypedValue
 import android.view.*
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.annotation.DrawableRes
 import androidx.annotation.LayoutRes
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.google.android.material.textfield.TextInputLayout
+import java.io.File
 
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View {
     return LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)

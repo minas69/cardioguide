@@ -1,16 +1,10 @@
-package com.example.medicalapp.ui.view.srollview
+package com.example.views
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Paint
-import android.os.Build
 import android.util.AttributeSet
-import android.widget.ScrollView
-import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.core.widget.NestedScrollView
-import com.example.medicalapp.R
-import com.example.medicalapp.dpToPx
 
 class CustomScrollView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null

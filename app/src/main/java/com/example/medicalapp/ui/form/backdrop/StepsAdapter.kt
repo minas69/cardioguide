@@ -1,17 +1,22 @@
-package com.example.medicalapp.ui.view.backdrop
+package com.example.medicalapp.ui.form.backdrop
 
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
 import android.os.Build
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
-import com.example.medicalapp.Step
 import com.example.medicalapp.R
+import com.example.medicalapp.Step
 import com.example.medicalapp.dpToPx
 import com.example.medicalapp.inflate
 import kotlinx.android.synthetic.main.step_item.view.*
@@ -48,7 +53,15 @@ class StepsAdapter(
                     title.setTextColor(colorGray)
                 }
             }
-            title.text = data[position].name
+            val item = data[position]
+            if (item.containsRequired) {
+                val text = item.name
+                val spannable = SpannableString("$text*")
+                spannable.setSpan(ForegroundColorSpan(Color.RED), text.length, text.length + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                title.setText(spannable, TextView.BufferType.SPANNABLE)
+            } else {
+                title.text = item.name
+            }
 
             setOnClickListener {
                 selected = position

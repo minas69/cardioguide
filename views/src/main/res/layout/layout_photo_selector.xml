@@ -11,23 +11,18 @@
         tools:text="Уход за собой"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textSize="18sp"
-        android:paddingTop="16dp"
-        android:paddingBottom="8dp" />
+        android:paddingTop="8dp" />
 
-    <RadioGroup
-        android:id="@+id/radioGroup"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:ignore="UselessLeaf" />
-
-    <com.example.views.FlowLayout
-        android:id="@+id/flowLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="horizontal"
+        android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hint"
-        tools:ignore="UselessLeaf" />
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        tools:listitem="@layout/photo_item" />
 
 </merge>

@@ -1,9 +1,9 @@
 package com.example.views
 
 import android.content.Context
-import android.text.Editable
-import android.text.InputType
-import android.text.TextWatcher
+import android.graphics.Color
+import android.text.*
+import android.text.style.ForegroundColorSpan
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -34,6 +34,17 @@ class RadioSection @JvmOverloads constructor(
             applyItems(value)
         }
 
+    var isRequired: Boolean = false
+        set(value) {
+            field = value
+            val labelText = label
+            if (value && labelText != null) {
+                val spannable = SpannableString("$labelText*")
+                spannable.setSpan(ForegroundColorSpan(Color.RED), labelText.length, labelText.length + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                labelTextView.setText(spannable, TextView.BufferType.SPANNABLE)
+            }
+        }
+
     init {
         orientation = VERTICAL
         inflate(context, R.layout.layout_radio_section, this)
@@ -53,6 +64,10 @@ class RadioSection @JvmOverloads constructor(
                 layoutParams.width = LayoutParams.MATCH_PARENT
             }
         }
+    }
+
+    fun clearSelection() {
+        radioGroup.clearCheck()
     }
 
     fun setOnCheckedChangedListener(listener: (Int) -> Unit) {

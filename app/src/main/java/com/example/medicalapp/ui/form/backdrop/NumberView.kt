@@ -1,17 +1,17 @@
-package com.example.medicalapp.ui.view.backdrop
+package com.example.medicalapp.ui.form.backdrop
 
 import android.content.Context
-import android.os.Build
 import android.util.AttributeSet
 import android.widget.FrameLayout
-import androidx.annotation.RequiresApi
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.example.medicalapp.R
-import kotlinx.android.synthetic.main.number_view.view.*
 
 class NumberView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
 ) : FrameLayout(context, attrs) {
+
+    private val initial: TextView
 
     private var number: Int? = null
     private var mSelected = false
@@ -20,7 +20,9 @@ class NumberView @JvmOverloads constructor(
     private var colorGray = ContextCompat.getColor(context, R.color.lightGrayColor)
 
     init {
-        inflate(context, R.layout.number_view, this)
+        inflate(context, R.layout.layout_number_view, this)
+        
+        initial = getChildAt(0) as TextView
 //        clipToOutline = true
     }
 

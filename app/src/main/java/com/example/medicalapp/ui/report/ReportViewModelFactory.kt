@@ -7,7 +7,7 @@ import com.example.medicalapp.data.LoginRepository
 import com.example.medicalapp.data.MainRepository
 import com.example.medicalapp.data.model.Data
 
-class ReportViewModelFactory(val data: Data) : ViewModelProvider.Factory {
+class ReportViewModelFactory(val data: Map<String, Any>) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

@@ -6,8 +6,10 @@ import android.text.InputType
 import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.view.children
 import androidx.core.widget.addTextChangedListener
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -27,6 +29,9 @@ class CheckBoxSection @JvmOverloads constructor(
     var label: CharSequence?
         set(value) {
             labelTextView.text = value
+            if (value.toString().isEmpty()) {
+                labelTextView.visibility = View.GONE
+            }
         }
         get() = labelTextView.text
 
@@ -65,6 +70,13 @@ class CheckBoxSection @JvmOverloads constructor(
                 }
                 itemsLayout.addView(this)
             }
+        }
+    }
+
+    fun clearSelection() {
+        itemsLayout.children.forEach { child ->
+            val checkBox = child as CheckBox
+            checkBox.isChecked = false
         }
     }
 

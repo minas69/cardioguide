@@ -1,10 +1,12 @@
 package com.example.medicalapp.data
 
+import com.example.medicalapp.data.Result.Success
+
 /**
  * A generic class that holds a value with its loading status.
  * @param <T>
  */
-sealed class Result<out T : Any> {
+sealed class Result<out R> {
 
     data class Success<out T : Any>(val data: T) : Result<T>()
     data class Error(val exception: Exception) : Result<Nothing>()
@@ -16,3 +18,6 @@ sealed class Result<out T : Any> {
         }
     }
 }
+
+val Result<*>.succeeded
+    get() = this is Success && data != null

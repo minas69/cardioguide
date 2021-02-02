@@ -1,4 +1,4 @@
-package com.example.medicalapp.ui.view
+package com.example.views
 
 import android.content.Context
 import android.graphics.Canvas
@@ -8,9 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
-import com.example.medicalapp.R
-import com.example.medicalapp.dpToPx
-import com.example.medicalapp.layoutParams
 import kotlin.math.max
 
 open class CustomLinearLayout @JvmOverloads constructor(

@@ -1,4 +1,4 @@
-package com.example.medicalapp.ui.view.backdrop
+package com.example.medicalapp.ui.form.backdrop
 
 import android.view.View
 import android.view.ViewGroup

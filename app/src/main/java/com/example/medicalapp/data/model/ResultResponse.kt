@@ -4,4 +4,4 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class ResultResponse(val hdr: Double, val gfr: Double, val bmi: Double) : Parcelable
+data class ResultResponse(val SCORE: Double, val CKD_EPI: Double, val BMI: Double) : Parcelable

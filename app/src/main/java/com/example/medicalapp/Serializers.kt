@@ -21,7 +21,7 @@ class InputSerializer : KSerializer<Input> {
         const val CHECKBOX_INPUT_TYPE = "checkbox"
         const val RADIO_GROUP_INPUT_TYPE = "radioGroup"
         const val CHECKBOX_GROUP_INPUT_TYPE = "checkboxGroup"
-        const val SLIDER_INPUT_TYPE = "slider"
+        const val PHOTOS_INPUT_TYPE = "photo"
     }
 
     override val descriptor: SerialDescriptor = InputSurrogate.serializer().descriptor
@@ -31,15 +31,15 @@ class InputSerializer : KSerializer<Input> {
 
         return with(surrogate) {
             when (inputType) {
-                TEXT_INPUT_TYPE -> TextInput(id, name, required)
-                DATE_INPUT_TYPE -> DateInput(id, name, required)
+                TEXT_INPUT_TYPE -> TextInput(id, name, required, helperText)
+                DATE_INPUT_TYPE -> DateInput(id, name, min, max, required)
                 OPTIONS_INPUT_TYPE -> OptionsInput(id, name, required, options!!)
-                INTEGER_INPUT_TYPE -> IntegerInput(id, name, required, suffixText)
-                FLOAT_INPUT_TYPE -> FloatInput(id, name, required, suffixText)
+                INTEGER_INPUT_TYPE -> IntegerInput(id, name, required, suffixText, helperText)
+                FLOAT_INPUT_TYPE -> FloatInput(id, name, required, suffixText, helperText)
                 CHECKBOX_INPUT_TYPE -> CheckBoxInput(id, name, required, thenAttributes)
                 RADIO_GROUP_INPUT_TYPE -> RadioGroupInput(id, name, required, options!!, thenAttributes)
                 CHECKBOX_GROUP_INPUT_TYPE -> CheckboxGroupInput(id, name, required, options!!)
-//                SLIDER_INPUT_TYPE -> SliderInput(id, name, required, Pair(from!!, to!!))
+                PHOTOS_INPUT_TYPE -> PhotosInput(id, name, max!!.toInt(), required)
                 else -> throw Exception("There's no such inputType=$inputType")
             }
         }
@@ -53,14 +53,19 @@ class InputSerializer : KSerializer<Input> {
 //@Serializable(with = StepSerializer::class)
 @Serializable
 @Parcelize
-data class Step(val id: Int, val name: String, val attributes: List<Input>): Parcelable
+data class Step(
+    val id: Int,
+    val name: String,
+    val containsRequired: Boolean = false,
+    val attributes: List<Input>
+): Parcelable
 
 @Serializable(with = InputSerializer::class)
 sealed class Input: Parcelable {
 
-    abstract fun isFilled(): Boolean
+    abstract fun isRequired(): Boolean
 
-    abstract fun toHashMap(): HashMap<String, *>
+    abstract fun getIdd(): String
 
 }
 
@@ -69,15 +74,13 @@ class TextInput(
     val id: String,
     val name: String,
     val required: Boolean,
+    val helperText: String?,
     var input: CharSequence = ""
 ) : Input() {
 
-    override fun isFilled() = input.isNotEmpty()
+    override fun isRequired() = required
 
-    override fun toHashMap() = hashMapOf(
-        "id" to id,
-        "value" to input
-    )
+    override fun getIdd() = id
 
 }
 
@@ -85,16 +88,15 @@ class TextInput(
 class DateInput(
     val id: String,
     val name: String,
+    val min: Long?,
+    val max: Long?,
     val required: Boolean,
     var input: String = ""
 ) : Input() {
 
-    override fun isFilled() = input.isNotEmpty()
+    override fun isRequired() = required
 
-    override fun toHashMap() = hashMapOf(
-        "id" to id,
-        "value" to input
-    )
+    override fun getIdd() = id
 
 }
 
@@ -108,12 +110,9 @@ class OptionsInput(
 
     var selected: Int? = null
 
-    override fun isFilled() = selected != null
+    override fun isRequired() = required
 
-    override fun toHashMap() = hashMapOf(
-        "id" to id,
-        "value" to selected
-    )
+    override fun getIdd() = id
 
 }
 
@@ -123,15 +122,13 @@ class IntegerInput(
     val name: String,
     val required: Boolean,
     val suffix: String?,
+    val helperText: String?,
     var input: Int? = null
 ) : Input() {
 
-    override fun isFilled() = input != null
+    override fun isRequired() = required
 
-    override fun toHashMap() = hashMapOf(
-        "id" to id,
-        "value" to input
-    )
+    override fun getIdd() = id
 
 }
 
@@ -141,15 +138,13 @@ class FloatInput(
     val name: String,
     val required: Boolean,
     val suffix: String?,
+    val helperText: String?,
     var input: Float? = null
 ) : Input() {
 
-    override fun isFilled() = input != null
+    override fun isRequired() = required
 
-    override fun toHashMap() = hashMapOf(
-        "id" to id,
-        "value" to input
-    )
+    override fun getIdd() = id
 
 }
 
@@ -163,12 +158,9 @@ class CheckBoxInput(
 
     var isChecked: Boolean = false
 
-    override fun isFilled() = true
+    override fun isRequired() = required
 
-    override fun toHashMap() = hashMapOf(
-        "id" to id,
-        "value" to isChecked
-    )
+    override fun getIdd() = id
 
 }
 
@@ -183,12 +175,9 @@ class RadioGroupInput(
 
     var checked: Int? = null
 
-    override fun isFilled() = checked != null
+    override fun isRequired() = required
 
-    override fun toHashMap() = hashMapOf(
-        "id" to id,
-        "value" to checked
-    )
+    override fun getIdd() = id
 
 }
 
@@ -202,29 +191,24 @@ class CheckboxGroupInput(
 
     var checked = mutableListOf<Int>()
 
-    override fun isFilled() = true
+    override fun isRequired() = required
 
-    override fun toHashMap() = hashMapOf(
-        "id" to id,
-        "value" to checked
-    )
+    override fun getIdd() = id
 
 }
 
-//class SliderInput(
-//    id: Int,
-//    name: String,
-//    required: Boolean,
-//    val range: Pair<Int, Int>
-//) : Input(id, name, required) {
-//
-//    var value = 0
-//
-//    override fun isFilled() = value != 0
-//
-//    override fun toHashMap() = hashMapOf(
-//        "id" to id,
-//        "value" to value
-//    )
-//
-//}
+@Parcelize
+class PhotosInput(
+    val id: String,
+    val name: String,
+    val max: Int,
+    val required: Boolean,
+) : Input() {
+
+    var value = 0
+
+    override fun isRequired() = required
+
+    override fun getIdd() = id
+
+}

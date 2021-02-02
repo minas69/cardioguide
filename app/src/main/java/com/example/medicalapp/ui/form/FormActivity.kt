@@ -1,20 +1,28 @@
 package com.example.medicalapp.ui.form
 
+import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import com.example.medicalapp.*
 import com.example.medicalapp.ui.login.LoginActivity
 import com.example.medicalapp.ui.report.ReportActivity
-import com.example.medicalapp.ui.view.backdrop.BackdropBehavior
-import com.example.medicalapp.ui.view.backdrop.StepsAdapter
+import com.example.medicalapp.ui.form.backdrop.BackdropBehavior
+import com.example.medicalapp.ui.form.backdrop.StepsAdapter
 import kotlinx.android.synthetic.main.activity_form.*
 import kotlinx.android.synthetic.main.activity_form.frontLayout
 import kotlinx.android.synthetic.main.back_layer.*
+import kotlinx.android.synthetic.main.step_item.view.*
 
 
 class FormActivity : AppCompatActivity() {
@@ -24,6 +32,9 @@ class FormActivity : AppCompatActivity() {
         private const val FRAGMENT_TAG_PREFIX = "content_"
         private const val BOTTOM_SHEET_TAG = "bottom_sheet"
         private const val SELECTED_STEP_ARG = "selected_step"
+
+        private const val INPUTS_ARG = "inputs"
+        private const val PHOTOS_ARG = "photos"
     }
 
     private lateinit var viewModel: FormViewModel
@@ -50,8 +61,9 @@ class FormActivity : AppCompatActivity() {
 //        }
 
         savedInstanceState?.let {
-            val iinputs = (it.getSerializable("fuck") as HashMap<String, Any>?) ?: return@let
-            viewModel.setInputs(iinputs)
+            viewModel.inputs = (it.getSerializable(INPUTS_ARG) as HashMap<String, Any>?) ?: return@let
+            val photos = (it.getSerializable(PHOTOS_ARG) as HashMap<String, List<Pair<String, String?>>>?) ?: return@let
+            viewModel.setPhotos(photos)
         }
 
         val selected = viewModel.selectedStep.value ?: 0
@@ -68,10 +80,23 @@ class FormActivity : AppCompatActivity() {
         backdropBehavior.attachBackLayout(R.id.backLayout)
 
         viewModel.selectedStep.observe(this) { index ->
+            if (index == -1) {
+                return@observe resetFragmentManager()
+            }
             stepsAdapter.selected = index
             val total = viewModel.data.size
             supportActionBar?.title = "Шаг ${index + 1} из $total"
-            frontLayout.subheader.text = viewModel.data[index].name
+
+            val step = viewModel.data[index];
+            if (step.containsRequired) {
+                val text = step.name
+                val spannable = SpannableString("$text*")
+                spannable.setSpan(ForegroundColorSpan(Color.RED), text.length, text.length + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                frontLayout.subheader.setText(spannable, TextView.BufferType.SPANNABLE)
+            } else {
+                frontLayout.subheader.text = step.name
+            }
+
             showPage(index)
         }
 
@@ -79,9 +104,9 @@ class FormActivity : AppCompatActivity() {
             toast(it)
         }
 
-        viewModel.result.observe(this) {
-            startActivity(ReportActivity.getIntent(this, it))
-        }
+//        viewModel.result.observe(this) {
+//            startActivity(ReportActivity.getIntent(this, it))
+//        }
 
         rollUp.setOnClickListener {
             backdropBehavior.close()
@@ -92,7 +117,8 @@ class FormActivity : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
-        outState.putSerializable("fuck", viewModel._inputs)
+        outState.putSerializable(INPUTS_ARG, viewModel.inputs)
+        outState.putSerializable(PHOTOS_ARG, viewModel.photos.value)
         outState.putInt(SELECTED_STEP_ARG, viewModel.selectedStep.value ?: 0)
     }
 
@@ -111,17 +137,26 @@ class FormActivity : AppCompatActivity() {
         }
     }
 
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        when (requestCode) {
+            ReportActivity.REPORT_REQUEST -> {
+                if (resultCode == Activity.RESULT_OK) {
+                    clearInput()
+                }
+            }
+        }
+    }
+
+    private fun clearInput() {
+        viewModel.clear()
+//        viewModel.setPhotos(HashMap())
+//        viewModel.inputs = HashMap()
+//        viewModel.selectStep(0)
 //
-//        when (requestCode) {
-//            ReportActivity.REPORT_REQUEST -> {
-//                if (resultCode == Activity.RESULT_OK) {
-////                    clearInput()
-//                }
-//            }
-//        }
-//    }
+//        resetFragmentManager()
+    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_form, menu)
@@ -142,10 +177,15 @@ class FormActivity : AppCompatActivity() {
         sheet.itemClickListener = { view ->
             when (view.id) {
                 R.id.complete -> {
-                    viewModel.complete()
+//                    clearInput()
+                    if (viewModel.canComplete()) {
+                        startActivityForResult(
+                            ReportActivity.getIntent(this, viewModel.inputs),
+                            ReportActivity.REPORT_REQUEST
+                        )
+                    }
                 }
                 R.id.exit -> {
-                    toast("Exited")
                     logout()
                 }
             }
@@ -157,6 +197,20 @@ class FormActivity : AppCompatActivity() {
         viewModel.logout()
         startActivity(Intent(this, LoginActivity::class.java))
         finish()
+    }
+
+    private fun resetFragmentManager() {
+        val transaction = supportFragmentManager.beginTransaction()
+
+        repeat(viewModel.data.count()) { i ->
+            val fragment = supportFragmentManager.findFragmentByTag(FRAGMENT_TAG_PREFIX + i)
+            if (fragment != null) {
+                transaction.remove(fragment)
+            }
+        }
+        transaction.commitNow()
+
+        viewModel.selectStep(0)
     }
 
     private fun showPage(index: Int) {
