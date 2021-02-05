@@ -1,6 +1,5 @@
 package com.example.medicalapp.data
 
-import android.util.Log
 import com.example.medicalapp.data.model.ResultResponse
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.auth.FirebaseAuth
@@ -9,8 +8,6 @@ import com.google.firebase.ktx.Firebase
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.POST
 import java.io.IOException
 import com.example.medicalapp.data.Result.Success
 import com.example.medicalapp.data.Result.Error
@@ -19,8 +16,7 @@ import com.google.gson.reflect.TypeToken
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.asRequestBody
-import retrofit2.http.Multipart
-import retrofit2.http.Part
+import retrofit2.http.*
 import java.io.File
 
 object Repository {
@@ -53,7 +49,20 @@ object Repository {
 
         val response = API.apiService.sendPhoto(body)
         if (response.isSuccessful) {
-            val result = response.body()?.photoUrl ?: return Error(Exception("null"))
+            val result = response.body()?.id ?: return Error(Exception("null"))
+            return Success(result)
+        } else {
+            val gson = Gson()
+            val type = object : TypeToken<ErrorResponse>() {}.type
+            val errorResponse: ErrorResponse? = gson.fromJson(response.errorBody()?.charStream(), type)
+            return Error(Exception(errorResponse?.msg ?: "Error occurred"))
+        }
+    }
+
+    suspend fun sendReview(recordId: String, aware: Boolean, helpful: Boolean, rate: Int): Result<Unit> {
+        val response = API.apiService.sendReview(recordId, ReviewRequest(aware, helpful, rate))
+        if (response.isSuccessful) {
+            val result = response.body() ?: return Error(Exception("null"))
             return Success(result)
         } else {
             val gson = Gson()
@@ -69,11 +78,13 @@ data class DataRequest(val data: List<Map<String, *>>)
 
 data class ErrorResponse(val msg: String)
 
-data class PhotoResponse(val photoUrl: String)
+data class PhotoResponse(val id: String)
+
+data class ReviewRequest(val aware: Boolean, val helpful: Boolean, val rate: Int)
 
 object API {
     private const val API_BASE_URL = "https://us-central1-score-school.cloudfunctions.net/api/"
-//    private const val API_BASE_URL = "http://192.168.1.111:5000/score-school/us-central1/api/"
+//    private const val API_BASE_URL = "http://192.168.1.111:5001/score-school/us-central1/api/"
 
     private val httpClient = OkHttpClient.Builder().apply {
         addInterceptor(
@@ -99,6 +110,9 @@ object API {
         @Multipart
         @POST("photo")
         suspend fun sendPhoto(@Part photo: MultipartBody.Part): retrofit2.Response<PhotoResponse>
+
+        @POST("rate")
+        suspend fun sendReview(@Query("id") id: String, @Body request: ReviewRequest): retrofit2.Response<Unit>
     }
 
     class AuthInterceptor : Interceptor {

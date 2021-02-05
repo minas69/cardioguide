@@ -4,12 +4,16 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.medicalapp.*
 import com.example.medicalapp.data.Status
 import com.example.medicalapp.data.model.ResultResponse
+import com.example.medicalapp.ui.form.FormActivity
+import com.example.medicalapp.ui.review.ReviewActivity
 import kotlinx.android.synthetic.main.activity_report.*
 import kotlinx.android.synthetic.main.content_error.*
 import kotlinx.android.synthetic.main.content_report.*
@@ -21,6 +25,10 @@ class ReportActivity : AppCompatActivity() {
     private val viewModel: ReportViewModel by viewModels {
         ReportViewModelFactory(intent.getSerializableExtra(DATA)!! as Map<String, Any>)
     }
+
+    private var rateMenuItem: MenuItem? = null
+    private lateinit var reviewIntent: Intent
+    private var rated = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +42,10 @@ class ReportActivity : AppCompatActivity() {
             setDisplayShowHomeEnabled(true)
         }
         applyInsets()
+
+        savedInstanceState?.let {
+            rated = it.getBoolean(RATED_ARG)
+        }
 
         content.visibility = View.GONE
         errorContainer.visibility = View.GONE
@@ -82,6 +94,9 @@ class ReportActivity : AppCompatActivity() {
             content.visibility = View.VISIBLE
             errorContainer.visibility = View.GONE
             loading.visibility = View.GONE
+
+            rateMenuItem?.isVisible = !rated
+            reviewIntent = ReviewActivity.getIntent(this, report.id)
 
             val coefficients: List<Coefficient>
                     = application.assets.open("result.json").bufferedReader().use {
@@ -156,14 +171,49 @@ class ReportActivity : AppCompatActivity() {
         }
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        finish()
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_report, menu)
+        rateMenuItem = menu.findItem(R.id.rateMenuItem).apply {
+            isVisible = viewModel.result.value?.status == Status.SUCCESS && !rated
+        }
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.rateMenuItem -> {
+                startActivityForResult(reviewIntent, ReviewActivity.REVIEW_REQUEST)
+            }
+            android.R.id.home -> {
+                finish()
+            }
+        }
+        return true
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        when (requestCode) {
+            ReviewActivity.REVIEW_REQUEST -> {
+                if (resultCode == Activity.RESULT_OK) {
+                    rated = true
+                    rateMenuItem?.isVisible = false
+                }
+            }
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        outState.putBoolean(RATED_ARG, rated)
     }
 
     companion object {
 
         private const val DATA = "data"
+        private const val RATED_ARG = "rated"
         const val REPORT_REQUEST = 799
 
         fun getIntent(context: Context, data: HashMap<String, Any>) =

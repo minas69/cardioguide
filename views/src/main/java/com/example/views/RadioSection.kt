@@ -34,6 +34,8 @@ class RadioSection @JvmOverloads constructor(
             applyItems(value)
         }
 
+    var checked: Int? = null
+
     var isRequired: Boolean = false
         set(value) {
             field = value
@@ -72,6 +74,7 @@ class RadioSection @JvmOverloads constructor(
 
     fun setOnCheckedChangedListener(listener: (Int) -> Unit) {
         radioGroup.setOnCheckedChangeListener { _, i ->
+            checked = i
             listener(i)
         }
     }

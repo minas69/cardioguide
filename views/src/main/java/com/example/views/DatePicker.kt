@@ -66,7 +66,10 @@ class DatePicker @JvmOverloads constructor(
         editText.isFocusable = false
 
         editText.setOnClickListener {
-            picker?.show(fragmentManager!!, picker.toString())
+            val datePicker = picker ?: return@setOnClickListener
+            if (!datePicker.isAdded) {
+                datePicker.show(fragmentManager!!, picker.toString())
+            }
         }
     }
 

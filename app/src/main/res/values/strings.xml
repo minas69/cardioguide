@@ -23,6 +23,7 @@
     <string name="smoking_hint">Курение</string>
     <string name="low_risk_country_hint">Страна низкого риска</string>
     <string name="send_button_text">Отправить</string>
+    <string name="more_menu_item">more</string>
 
     // Strings for Report Screen
     <string name="title_activity_report">Результат</string>
@@ -33,5 +34,8 @@
     <string name="recommendation_label_text">Рекомендации</string>
     <string name="text_input_hint">Text Input</string>
     <string name="complete_menu_item">Завершить</string>
-    <string name="more_menu_item">more</string>
+    <string name="rate_menu_item">Оценить</string>
+
+    // String for Review Screen
+    <string name="title_activity_review">Оценить</string>
 </resources>

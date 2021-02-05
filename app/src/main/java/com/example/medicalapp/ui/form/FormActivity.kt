@@ -19,6 +19,7 @@ import com.example.medicalapp.ui.login.LoginActivity
 import com.example.medicalapp.ui.report.ReportActivity
 import com.example.medicalapp.ui.form.backdrop.BackdropBehavior
 import com.example.medicalapp.ui.form.backdrop.StepsAdapter
+import com.example.medicalapp.ui.review.ReviewActivity
 import kotlinx.android.synthetic.main.activity_form.*
 import kotlinx.android.synthetic.main.activity_form.frontLayout
 import kotlinx.android.synthetic.main.back_layer.*
@@ -151,11 +152,6 @@ class FormActivity : AppCompatActivity() {
 
     private fun clearInput() {
         viewModel.clear()
-//        viewModel.setPhotos(HashMap())
-//        viewModel.inputs = HashMap()
-//        viewModel.selectStep(0)
-//
-//        resetFragmentManager()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -177,7 +173,6 @@ class FormActivity : AppCompatActivity() {
         sheet.itemClickListener = { view ->
             when (view.id) {
                 R.id.complete -> {
-//                    clearInput()
                     if (viewModel.canComplete()) {
                         startActivityForResult(
                             ReportActivity.getIntent(this, viewModel.inputs),
