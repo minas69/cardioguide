@@ -144,7 +144,7 @@ class FormActivity : AppCompatActivity() {
         when (requestCode) {
             ReportActivity.REPORT_REQUEST -> {
                 if (resultCode == Activity.RESULT_OK) {
-                    clearInput()
+//                    clearInput()
                 }
             }
         }
@@ -179,6 +179,9 @@ class FormActivity : AppCompatActivity() {
                             ReportActivity.REPORT_REQUEST
                         )
                     }
+                }
+                R.id.clear -> {
+                    clearInput()
                 }
                 R.id.exit -> {
                     logout()
