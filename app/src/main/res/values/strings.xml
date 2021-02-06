@@ -34,7 +34,7 @@
     <string name="recommendation_label_text">Рекомендации</string>
     <string name="text_input_hint">Text Input</string>
     <string name="complete_menu_item">Завершить</string>
-    <string name="clear_menu_item">Очисть</string>
+    <string name="clear_menu_item">Очистить</string>
     <string name="rate_menu_item">Оценить</string>
 
     // String for Review Screen
