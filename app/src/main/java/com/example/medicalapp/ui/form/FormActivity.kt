@@ -14,6 +14,7 @@ import android.view.MenuItem
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.observe
 import com.example.medicalapp.*
 import com.example.medicalapp.ui.login.LoginActivity
 import com.example.medicalapp.ui.report.ReportActivity
@@ -88,7 +89,7 @@ class FormActivity : AppCompatActivity() {
             val total = viewModel.data.size
             supportActionBar?.title = "Шаг ${index + 1} из $total"
 
-            val step = viewModel.data[index];
+            val step = viewModel.data[index]
             if (step.containsRequired) {
                 val text = step.name
                 val spannable = SpannableString("$text*")
@@ -174,6 +175,7 @@ class FormActivity : AppCompatActivity() {
             when (view.id) {
                 R.id.complete -> {
                     if (viewModel.canComplete()) {
+                        viewModel.saveDraft()
                         startActivityForResult(
                             ReportActivity.getIntent(this, viewModel.inputs),
                             ReportActivity.REPORT_REQUEST

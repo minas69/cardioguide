@@ -84,7 +84,7 @@ data class ReviewRequest(val aware: Boolean, val helpful: Boolean, val rate: Int
 
 object API {
     private const val API_BASE_URL = "https://us-central1-score-school.cloudfunctions.net/api/"
-//    private const val API_BASE_URL = "http://192.168.1.111:5001/score-school/us-central1/api/"
+//    private const val API_BASE_URL = "http://192.168.1.151:5001/score-school/us-central1/api/"
 
     private val httpClient = OkHttpClient.Builder().apply {
         addInterceptor(

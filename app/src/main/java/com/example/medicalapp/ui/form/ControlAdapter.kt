@@ -111,6 +111,7 @@ fun TextInput.createView(context: Context,
     view.padding(left = horizontalMargin, right = horizontalMargin)
     view.hint = name
     view.inputType = InputType.TYPE_CLASS_TEXT
+    view.inputText = input
     view.isRequired = required
     view.helperText = helperText
     view.afterTextChanged { text ->

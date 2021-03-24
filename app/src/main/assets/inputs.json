@@ -5,36 +5,29 @@
     "containsRequired": true,
     "attributes": [
       {
-        "id": "SXWTY2NWQ1XsUp05xvdy",
-        "name": "Прикрепить фото добровольного согласия",
-        "inputType": "photo",
-        "max": 1,
-        "required": true
-      },
-      {
-        "id": "fBsE0R8mKTWjPh8tjgys",
-        "name": "Фамилия",
+        "id": "KzTi18pqbvTaBmUTX1TT",
+        "name": "Фамилия волонтера",
         "inputType": "text",
         "required": true
       },
       {
-        "id": "cCT8tCn5RKmnn5hm66zZ",
-        "name": "Имя",
+        "id": "52tOTfbNw4neUw99BNah",
+        "name": "Имя волонтера",
         "inputType": "text",
         "required": true
       },
       {
-        "id": "xd8UIU4Ws8Hbpf8B7hdL",
-        "name": "Отчество",
+        "id": "GHBwfYeLlPAHIHkCF3x3",
+        "name": "Отчество волонтера",
         "inputType": "text",
         "required": true
       },
       {
-        "id": "xBpET80SqadnrMnErCXz",
-        "name": "Дата рождения",
-        "inputType": "date",
-        "min": 2837505600000,
-        "max": 633830400000,
+        "id": "7VWqa7NcyKcwos4jTZkz",
+        "name": "Возраст",
+        "inputType": "unsigned",
+        "min": 20,
+        "max": 80,
         "required": true
       },
       {
@@ -89,7 +82,7 @@
         "name": "",
         "inputType": "checkboxGroup",
         "options": [
-          "Нет балоб",
+          "Нет жалоб",
           "Боль в сердце",
           "Перебои в работе сердца",
           "Одышка",
@@ -599,7 +592,7 @@
     "attributes": [
       {
         "id": "GrHJFgZxjtGQSJXKotff",
-        "name": "Прикрепить фото ОАК с фамилией и датой",
+        "name": "Прикрепить фото ОАК",
         "inputType": "photo",
         "max": 1
       },
@@ -642,7 +635,7 @@
     "attributes": [
       {
         "id": "uDmlEDCNGybdARcBKbRG",
-        "name": "Прикрепить фото БАК с фамилией и датой",
+        "name": "Прикрепить фото БАК",
         "inputType": "photo",
         "max": 1
       },
@@ -707,7 +700,7 @@
     "attributes": [
       {
         "id": "AKQhb8kDRsXK6CtBeaUU",
-        "name": "Прикрепить фото ЭКГ с фамилией и датой",
+        "name": "Прикрепить фото ЭКГ",
         "inputType": "photo",
         "max": 1
       }
@@ -719,7 +712,7 @@
     "attributes": [
       {
         "id": "Za2RTYJM2qJa9RjfpuLt",
-        "name": "Прикрепить фото ЭХОКГ с фамилией и датой",
+        "name": "Прикрепить фото ЭХОКГ",
         "inputType": "photo",
         "max": 2
       },
@@ -872,7 +865,7 @@
     "attributes": [
       {
         "id": "vmEJilfZZMA7hXHKBRCz",
-        "name": "Прикрепить фото ХМЭКГ с фамилией и датой",
+        "name": "Прикрепить фото ХМЭКГ",
         "inputType": "photo",
         "max": 2
       },

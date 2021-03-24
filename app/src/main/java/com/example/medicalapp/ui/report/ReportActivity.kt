@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.observe
 import com.example.medicalapp.*
 import com.example.medicalapp.data.Status
 import com.example.medicalapp.data.model.ResultResponse
@@ -19,6 +20,7 @@ import kotlinx.android.synthetic.main.content_error.*
 import kotlinx.android.synthetic.main.content_report.*
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
+import java.text.SimpleDateFormat
 
 class ReportActivity : AppCompatActivity() {
 
@@ -97,6 +99,12 @@ class ReportActivity : AppCompatActivity() {
 
             rateMenuItem?.isVisible = !rated
             reviewIntent = ReviewActivity.getIntent(this, report.id)
+
+            reportId.text = report.id
+            createdBy.text = report.createdBy.email
+
+            val formatter = SimpleDateFormat("dd.MM.yyyy HH:mm:ss")
+            createdAt.text = formatter.format(report.createdAt)
 
             val coefficients: List<Coefficient>
                     = application.assets.open("result.json").bufferedReader().use {

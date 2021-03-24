@@ -16,6 +16,7 @@ import androidx.core.content.FileProvider
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.observe
 import com.example.medicalapp.*
 import com.example.medicalapp.ui.report.ReportActivity
 import kotlinx.android.synthetic.main.content_form.*

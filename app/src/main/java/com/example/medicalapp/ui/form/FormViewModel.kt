@@ -6,10 +6,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.SavedStateHandle
+import com.example.medicalapp.App
 import com.example.medicalapp.Step
+import com.example.medicalapp.TextInput
 import com.example.medicalapp.data.LoginRepository
 
 import com.example.medicalapp.data.MainRepository
+import com.example.medicalapp.data.Prefs
 import com.example.medicalapp.data.Repository
 import com.example.medicalapp.data.model.ResultResponse
 import kotlinx.coroutines.*
@@ -32,6 +35,8 @@ class FormViewModel(
     private val job = Job()
     private val viewModelScope = CoroutineScope(Dispatchers.Main + job)
 
+    private val prefs: Prefs = (application as App).prefs
+
 //    private val _isDataValid = MutableLiveData<Boolean>()
 //    val isDataValid: LiveData<Boolean> = _isDataValid
 
@@ -45,6 +50,11 @@ class FormViewModel(
     fun clear() {
         _photos.value = HashMap()
         inputs = HashMap()
+
+        inputs["52tOTfbNw4neUw99BNah"] = prefs.firstName
+        inputs["KzTi18pqbvTaBmUTX1TT"] = prefs.lastName
+        inputs["GHBwfYeLlPAHIHkCF3x3"] = prefs.patronymic
+
         selectStep(-1)
     }
 
@@ -107,6 +117,13 @@ class FormViewModel(
     val data: List<Step> = application.assets.open("inputs.json").bufferedReader().use {
             Json.decodeFromString(it.readText())
         }
+
+    init {
+        val attrs = data[0].attributes
+        (attrs[0] as TextInput).input = prefs.lastName
+        (attrs[1] as TextInput).input = prefs.firstName
+        (attrs[2] as TextInput).input = prefs.patronymic
+    }
 
     fun onInputChanged(id: String, value: Any?) {
         if (value != null) {
@@ -173,6 +190,12 @@ class FormViewModel(
         return true
     }
 
+    fun saveDraft() {
+        prefs.firstName = inputs["52tOTfbNw4neUw99BNah"].toString()
+        prefs.lastName = inputs["KzTi18pqbvTaBmUTX1TT"].toString()
+        prefs.patronymic = inputs["GHBwfYeLlPAHIHkCF3x3"].toString()
+    }
+
     fun complete() {
 //        var canComplete = true
 //        data.forEach { step ->
@@ -203,7 +226,10 @@ class FormViewModel(
     }
 
     fun logout() {
-       loginRepository.logout()
+        loginRepository.logout()
+        prefs.firstName = ""
+        prefs.lastName = ""
+        prefs.patronymic = ""
     }
 
     fun selectStep(stepIndex: Int) {

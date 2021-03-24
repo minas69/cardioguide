@@ -1,6 +1,6 @@
 package com.example.medicalapp.data
 
-import com.example.medicalapp.data.model.LoggedInUser
+import com.example.medicalapp.data.model.Volunteer
 import com.google.firebase.auth.FirebaseUser
 import java.lang.Exception
 
@@ -31,12 +31,12 @@ object LoginRepository {
         dataSource.logout()
     }
 
-    suspend fun login(username: String, password: String): LoggedInUser {
+    suspend fun login(username: String, password: String): Volunteer {
         val user = dataSource.login(username, password)
 
         user?.let {
             setLoggedInUser(it)
-            return LoggedInUser(user.uid, user.displayName)
+            return Volunteer(user.uid, user.displayName)
         }
 
         throw Exception("lox pidor")
